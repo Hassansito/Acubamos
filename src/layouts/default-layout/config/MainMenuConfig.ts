@@ -150,12 +150,18 @@ const MainMenuConfig: Array<MenuItem> = [
         route: "/pages/perfil",
         keenthemesIcon: "fingerprint-scanning",
         bootstrapIcon: "bi-sticky",
-      },
+      },    
       {
-        heading: "ecomerce",
-        route: "/pages/ecomerce",
+        sectionTitle: "ecomerce",
+        route: "/ecomerce",
         keenthemesIcon: "fingerprint-scanning",
         bootstrapIcon: "bi-sticky",
+        sub: [
+          {
+            heading: "Lista de órdenes",
+            route: "/apps/sales/orderlisting",
+          },        
+        ],
       },
       {
         heading: "files",
@@ -478,6 +484,18 @@ const MainMenuConfig: Array<MenuItem> = [
           {
             heading: "drawerChat",
             route: "/apps/chat/drawer-chat",
+          },
+        ],
+      },
+      {
+        sectionTitle: "Custom",
+        route: "/custom",
+        keenthemesIcon: "setting-2",
+        bootstrapIcon: "bi bi-gear-fill",
+        sub: [
+          {
+            heading: "Editar Banners",
+            route: "/apps/custom/editar-banner",
           },
         ],
       },
