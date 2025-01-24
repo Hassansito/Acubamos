@@ -103,156 +103,38 @@ const MainMenuConfig: Array<MenuItem> = [
       },
       {
         sectionTitle: "perfil",
-        route: "/perfil",
-        keenthemesIcon: "element-7",
-        bootstrapIcon: "bi-layers",
-      },
-    ],
-  },
-  /*               Comercialización            */
-  {
-    heading: "comercialización",
-    route: "/comercializacion",
-    pages: [
-      {
-        heading: "reservas",
-        route: "/comercializacion/reservas",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "contratos",
-        route: "/comercializacion/contratos",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "ofertas",
-        route: "/comercializacion/ofertas",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "productos",
-        route: "/comercializacion/productos",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-    ],
-  },
-  /*               Pages            */
-  {
-    heading: "Pages",
-    route: "/pages",
-    pages: [
-      {
-        heading: "perfil",
-        route: "/pages/perfil",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "ecomerce",
-        route: "/pages/ecomerce",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "files",
-        route: "/pages/files",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "correo",
-        route: "/pages/correo",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "calendario",
-        route: "/pages/calendario",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "contactos",
-        route: "/pages/contactos",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "customers",
-        route: "/pages/customers",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-      {
-        heading: "facturas",
-        route: "/pages/facturas",
-        keenthemesIcon: "fingerprint-scanning",
-        bootstrapIcon: "bi-sticky",
-      },
-    ],
-  },
-  {
-    heading: "craft",
-    route: "/crafted",
-    pages: [
-      {
-        sectionTitle: "pages",
-        route: "/pages",
-        keenthemesIcon: "element-plus",
-        bootstrapIcon: "bi-archive",
+        route: "/profile",
+        keenthemesIcon: "design",
+        bootstrapIcon: "bi-shield-check",
         sub: [
           {
-            sectionTitle: "profile",
-            route: "/profile",
-            sub: [
-              {
-                heading: "profileOverview",
-                route: "/crafted/pages/profile/overview",
-              },
-              {
-                heading: "projects",
-                route: "/crafted/pages/profile/projects",
-              },
-              {
-                heading: "campaigns",
-                route: "/crafted/pages/profile/campaigns",
-              },
-              {
-                heading: "documents",
-                route: "/crafted/pages/profile/documents",
-              },
-              {
-                heading: "connections",
-                route: "/crafted/pages/profile/connections",
-              },
-              {
-                heading: "activity",
-                route: "/crafted/pages/profile/activity",
-              },
-            ],
+            heading: "profileOverview",
+            route: "/crafted/pages/profile/overview",
           },
           {
-            sectionTitle: "wizards",
-            route: "/wizard",
-            sub: [
-              {
-                heading: "horizontal",
-                route: "/crafted/pages/wizards/horizontal",
-              },
-              {
-                heading: "vertical",
-                route: "/crafted/pages/wizards/vertical",
-              },
-            ],
+            heading: "projects",
+            route: "/crafted/pages/profile/projects",
+          },
+          {
+            heading: "campaigns",
+            route: "/crafted/pages/profile/campaigns",
+          },
+          {
+            heading: "documents",
+            route: "/crafted/pages/profile/documents",
+          },
+          {
+            heading: "connections",
+            route: "/crafted/pages/profile/connections",
+          },
+          {
+            heading: "activity",
+            route: "/crafted/pages/profile/activity",
           },
         ],
       },
       {
-        sectionTitle: "account",
+        sectionTitle: "cuenta",
         route: "/account",
         keenthemesIcon: "profile-circle",
         bootstrapIcon: "bi-person",
@@ -264,50 +146,6 @@ const MainMenuConfig: Array<MenuItem> = [
           {
             heading: "settings",
             route: "/crafted/account/settings",
-          },
-        ],
-      },
-      {
-        sectionTitle: "customers",
-        route: "/customers",
-        keenthemesIcon: "abstract-38",
-        bootstrapIcon: "bi-printer",
-        sub: [
-          {
-            heading: "gettingStarted",
-            route: "/apps/customers/getting-started",
-          },
-          {
-            heading: "customersListing",
-            route: "/apps/customers/customers-listing",
-          },
-          {
-            heading: "customerDetails",
-            route: "/apps/customers/customer-details",
-          },
-        ],
-      },
-      {
-        sectionTitle: "subscriptions",
-        route: "/subscriptions",
-        keenthemesIcon: "basket",
-        bootstrapIcon: "bi-cart",
-        sub: [
-          {
-            heading: "getStarted",
-            route: "/apps/subscriptions/getting-started",
-          },
-          {
-            heading: "subscriptionList",
-            route: "/apps/subscriptions/subscription-list",
-          },
-          {
-            heading: "addSubscription",
-            route: "/apps/subscriptions/add-subscription",
-          },
-          {
-            heading: "viewSubscription",
-            route: "/apps/subscriptions/view-subscription",
           },
         ],
       },

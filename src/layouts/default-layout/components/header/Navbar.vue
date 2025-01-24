@@ -81,7 +81,6 @@
 <script lang="ts">
 import { getAssetPath } from "@/core/helpers/assets";
 import { computed, defineComponent } from "vue";
-import KTSearch from "@/layouts/default-layout/components/search/Search.vue";
 import KTNotificationMenu from "@/layouts/default-layout/components/menus/NotificationsMenu.vue";
 import KTUserMenu from "@/layouts/default-layout/components/menus/UserAccountMenu.vue";
 import KTThemeModeSwitcher from "@/layouts/default-layout/components/theme-mode/ThemeModeSwitcher.vue";
