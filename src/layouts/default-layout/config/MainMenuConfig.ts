@@ -102,34 +102,152 @@ const MainMenuConfig: Array<MenuItem> = [
         bootstrapIcon: "bi-shield-check",
       },
       {
-        sectionTitle: "profile",
-        route: "/profile",
-        keenthemesIcon: "design",
-        bootstrapIcon: "bi-shield-check",
+        sectionTitle: "perfil",
+        route: "/perfil",
+        keenthemesIcon: "element-7",
+        bootstrapIcon: "bi-layers",
+      },
+    ],
+  },
+  /*               Comercialización            */
+  {
+    heading: "comercialización",
+    route: "/comercializacion",
+    pages: [
+      {
+        heading: "reservas",
+        route: "/comercializacion/reservas",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "contratos",
+        route: "/comercializacion/contratos",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "ofertas",
+        route: "/comercializacion/ofertas",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "productos",
+        route: "/comercializacion/productos",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+    ],
+  },
+  /*               Pages            */
+  {
+    heading: "Pages",
+    route: "/pages",
+    pages: [
+      {
+        heading: "perfil",
+        route: "/pages/perfil",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "ecomerce",
+        route: "/pages/ecomerce",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "files",
+        route: "/pages/files",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "correo",
+        route: "/pages/correo",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "calendario",
+        route: "/pages/calendario",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "contactos",
+        route: "/pages/contactos",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "customers",
+        route: "/pages/customers",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+      {
+        heading: "facturas",
+        route: "/pages/facturas",
+        keenthemesIcon: "fingerprint-scanning",
+        bootstrapIcon: "bi-sticky",
+      },
+    ],
+  },
+  {
+    heading: "craft",
+    route: "/crafted",
+    pages: [
+      {
+        sectionTitle: "pages",
+        route: "/pages",
+        keenthemesIcon: "element-plus",
+        bootstrapIcon: "bi-archive",
         sub: [
           {
-            heading: "profileOverview",
-            route: "/crafted/pages/profile/overview",
+            sectionTitle: "profile",
+            route: "/profile",
+            sub: [
+              {
+                heading: "profileOverview",
+                route: "/crafted/pages/profile/overview",
+              },
+              {
+                heading: "projects",
+                route: "/crafted/pages/profile/projects",
+              },
+              {
+                heading: "campaigns",
+                route: "/crafted/pages/profile/campaigns",
+              },
+              {
+                heading: "documents",
+                route: "/crafted/pages/profile/documents",
+              },
+              {
+                heading: "connections",
+                route: "/crafted/pages/profile/connections",
+              },
+              {
+                heading: "activity",
+                route: "/crafted/pages/profile/activity",
+              },
+            ],
           },
           {
-            heading: "projects",
-            route: "/crafted/pages/profile/projects",
-          },
-          {
-            heading: "campaigns",
-            route: "/crafted/pages/profile/campaigns",
-          },
-          {
-            heading: "documents",
-            route: "/crafted/pages/profile/documents",
-          },
-          {
-            heading: "connections",
-            route: "/crafted/pages/profile/connections",
-          },
-          {
-            heading: "activity",
-            route: "/crafted/pages/profile/activity",
+            sectionTitle: "wizards",
+            route: "/wizard",
+            sub: [
+              {
+                heading: "horizontal",
+                route: "/crafted/pages/wizards/horizontal",
+              },
+              {
+                heading: "vertical",
+                route: "/crafted/pages/wizards/vertical",
+              },
+            ],
           },
         ],
       },
@@ -278,6 +396,18 @@ const MainMenuConfig: Array<MenuItem> = [
         route: "/pages/facturas",
         keenthemesIcon: "fingerprint-scanning",
         bootstrapIcon: "bi-sticky",
+      },
+      {
+        sectionTitle: "Custom",
+        route: "/custom",
+        keenthemesIcon: "setting-2",
+        bootstrapIcon: "bi bi-gear-fill",
+        sub: [
+          {
+            heading: "Editar Banners",
+            route: "/apps/custom/editar-banner",
+          },
+        ],
       },
     ],
   },

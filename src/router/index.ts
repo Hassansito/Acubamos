@@ -156,7 +156,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "marca",
             name: "nomencladores-marca",
-            component: () => import("@/views/administracion/nomencladores/marcaList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/marcaList.vue"),
             meta: {
               pageTitle: "Marca",
             },
@@ -164,7 +165,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "categoria",
             name: "nomencladores-categoria",
-            component: () => import("@/views/administracion/nomencladores/categoriaList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/categoriaList.vue"),
             meta: {
               pageTitle: "Categoría",
             },
@@ -172,7 +174,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "provincia",
             name: "nomencladores-provincia",
-            component: () => import("@/views/administracion/nomencladores/provinciaList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/provinciaList.vue"),
             meta: {
               pageTitle: "Provincia",
             },
@@ -180,7 +183,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "municipio",
             name: "nomencladores-municipio",
-            component: () => import("@/views/administracion/nomencladores/municipioList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/municipioList.vue"),
             meta: {
               pageTitle: "Municipio",
             },
@@ -188,7 +192,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "modelo",
             name: "nomencladores-modelo",
-            component: () => import("@/views/administracion/nomencladores/modeloList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/modeloList.vue"),
             meta: {
               pageTitle: "Modelo",
             },
@@ -196,7 +201,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "localidad",
             name: "nomencladores-localidad",
-            component: () => import("@/views/administracion/nomencladores/localidadList.vue"),
+            component: () =>
+              import("@/views/administracion/nomencladores/localidadList.vue"),
             meta: {
               pageTitle: "Localidad",
             },
@@ -204,8 +210,10 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: "tipoTransporte",
             name: "nomencladores-tipoTransporte",
-            component: () =>import('@/views/administracion/nomencladores/tipoTransporteList.vue' 
-            ),
+            component: () =>
+              import(
+                "@/views/administracion/nomencladores/tipoTransporteList.vue"
+              ),
             meta: {
               pageTitle: "Tipo de transporte",
             },
@@ -217,7 +225,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/administracion/usuarios",
         name: "administracion-usuarios",
-        component: () => import("@/views/administracion/usuarios/usuarioList.vue"),
+        component: () =>
+          import("@/views/administracion/usuarios/usuarioList.vue"),
         meta: {
           pageTitle: "Usuarios",
           breadcrumbs: ["Administración", "Usuarios"],
@@ -225,7 +234,15 @@ const routes: Array<RouteRecordRaw> = [
       },
 
       /*fin del codigo */
-
+      {
+        path: "/apps/sales/orderlisting",
+        name: "apps-sales-order-listing",
+        component: () => import("@/views/apps/sales/OrderListing.vue"),
+        meta: {
+          pageTitle: "Listado de ordenes",
+          breadcrumbs: ["Apps", "Sales"],
+        },
+      },
       {
         path: "/apps/customers/getting-started",
         name: "apps-customers-getting-started",
@@ -327,6 +344,15 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           pageTitle: "Drawer Chat",
           breadcrumbs: ["Apps", "Chat"],
+        },
+      },
+      {
+        path: "/apps/custom/editar-banner",
+        name: "apps-editar-banner",
+        component: () => import("@/views/apps/custom/EditarBanner.vue"),
+        meta: {
+          pageTitle: "Editar Banner",
+          breadcrumbs: ["Apps", "Custom"],
         },
       },
       {
