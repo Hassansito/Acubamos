@@ -7,6 +7,25 @@
     </div> -->
     <!--end::Search-->
 
+     <!--Modal de los Módulos-->
+     <div class="app-navbar-item ms-1 ms-md-3">
+      <!--begin::Menu toggle-->
+      <a
+        href="#"
+        class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
+        data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        data-kt-menu-attach="parent"
+        data-kt-menu-placement="bottom-end"
+      >
+       
+        <KTIcon icon-name="element-11" icon-class="fs-2" />
+      </a>
+      <!--begin::Menu toggle-->
+      <KTModulesPanel />
+    </div>
+    <!--end Modal de los Módulos-->
+
+
     <!--begin::Notifications-->
     <div class="app-navbar-item ms-1 ms-md-4">
       <!--begin::Menu- wrapper-->
@@ -45,6 +64,7 @@
       <KTThemeModeSwitcher />
     </div>
     <!--end::Theme mode-->
+
     <!--begin::User menu-->
     <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
       <!--begin::Menu wrapper-->
@@ -82,6 +102,7 @@
 import { getAssetPath } from "@/core/helpers/assets";
 import { computed, defineComponent } from "vue";
 import KTNotificationMenu from "@/layouts/default-layout/components/menus/NotificationsMenu.vue";
+import KTModulesPanel from "@/layouts/default-layout/components/menus/ModulesPanel.vue";
 import KTUserMenu from "@/layouts/default-layout/components/menus/UserAccountMenu.vue";
 import KTThemeModeSwitcher from "@/layouts/default-layout/components/theme-mode/ThemeModeSwitcher.vue";
 import { ThemeModeComponent } from "@/assets/ts/layout";
@@ -94,6 +115,7 @@ export default defineComponent({
     KTNotificationMenu,
     KTUserMenu,
     KTThemeModeSwitcher,
+    KTModulesPanel,
   },
   setup() {
     const store = useThemeStore();

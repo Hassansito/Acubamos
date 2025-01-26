@@ -19,7 +19,7 @@
         class="menu menu-column menu-rounded menu-sub-indention px-3"
         data-kt-menu="true"
       >
-        <template v-for="(item, i) in MainMenuConfig" :key="i">
+        <template v-for="(item, i) in menuItems" :key="i">
           <div v-if="item.heading" class="menu-item pt-5">
             <div class="menu-content">
               <span class="menu-heading fw-bold text-uppercase fs-7">
@@ -161,7 +161,7 @@
 import { getAssetPath } from "@/core/helpers/assets";
 import { defineComponent, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import MainMenuConfig from "@/layouts/default-layout/config/MainMenuConfig";
+import useDynamicMenu from "@/layouts/default-layout/config/MainMenuConfig";
 import { sidebarMenuIcons } from "@/layouts/default-layout/config/helper";
 import { useI18n } from "vue-i18n";
 
@@ -172,6 +172,7 @@ export default defineComponent({
     const { t, te } = useI18n();
     const route = useRoute();
     const scrollElRef = ref<null | HTMLElement>(null);
+      const { menuItems } = useDynamicMenu();
 
     onMounted(() => {
       if (scrollElRef.value) {
@@ -193,7 +194,8 @@ export default defineComponent({
 
     return {
       hasActiveChildren,
-      MainMenuConfig,
+      // MainMenuConfig,
+      menuItems,
       sidebarMenuIcons,
       translate,
       getAssetPath,
