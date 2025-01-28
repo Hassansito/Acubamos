@@ -10,11 +10,11 @@ import { useAppStore } from "@/stores/store";
   setup() {
     const store = useAppStore()
     const modulos = ref([
-    { name: "Hoteles" },
-    { name: "Excursiones" },
-    { name: "Casas de renta" },
-    { name: "Transfer" },
-    { name: "Cubana aviación" },
+    { name: "Hoteles",path:"/comercializacion/reservar" },
+    { name: "Excursiones",path:"/comercializacion/reservar" },
+    { name: "Casas de renta",path:"/comercializacion/reservar" },
+    { name: "Transfer",path:"/comercializacion/reservar" },
+    { name: "Cubana aviación",path:"/comercializacion/reservar" },
     ])
 
 
@@ -47,7 +47,7 @@ return {
   <div class="row row-cols-3">
    
     <div class="col" v-for="modul in modulos" :key="modul.name">
-        <router-link to="" class="d-flex flex-column mb-5 text-center" @click="setModule(modul.name)">
+        <router-link :to="modul.path" class="d-flex flex-column mb-5 text-center" @click="setModule(modul.name)">
             <span class="menu-icon" data-kt-element="icon">
           <KTIcon icon-name="element-11" icon-class="fs-2" />
         </span>

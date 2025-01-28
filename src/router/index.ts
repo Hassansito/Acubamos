@@ -24,17 +24,10 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Dashboards"],
         },
       },
+
+
       {
-        path: "/builder",
-        name: "builder",
-        component: () => import("@/views/LayoutBuilder.vue"),
-        meta: {
-          pageTitle: "Layout Builder",
-          breadcrumbs: ["Layout"],
-        },
-      },
-      {
-        path: "/crafted/pages/profile",
+        path: "/administracion/profile",
         name: "profile",
         component: () => import("@/components/page-layouts/Profile.vue"),
         meta: {
@@ -45,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "overview",
             name: "profile-overview",
             component: () =>
-              import("@/views/crafted/pages/profile/Overview.vue"),
+              import("@/views/administracion/perfil/Overview.vue"),
             meta: {
               pageTitle: "Overview",
             },
@@ -54,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "projects",
             name: "profile-projects",
             component: () =>
-              import("@/views/crafted/pages/profile/Projects.vue"),
+              import("@/views/administracion/perfil/Projects.vue"),
             meta: {
               pageTitle: "Projects",
             },
@@ -63,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "campaigns",
             name: "profile-campaigns",
             component: () =>
-              import("@/views/crafted/pages/profile/Campaigns.vue"),
+              import("@/views/administracion/perfil/Campaigns.vue"),
             meta: {
               pageTitle: "Campaigns",
             },
@@ -72,7 +65,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "documents",
             name: "profile-documents",
             component: () =>
-              import("@/views/crafted/pages/profile/Documents.vue"),
+              import("@/views/administracion/perfil/Documents.vue"),
             meta: {
               pageTitle: "Documents",
             },
@@ -81,7 +74,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "connections",
             name: "profile-connections",
             component: () =>
-              import("@/views/crafted/pages/profile/Connections.vue"),
+              import("@/views/administracion/perfil/Connections.vue"),
             meta: {
               pageTitle: "Connections",
             },
@@ -90,7 +83,7 @@ const routes: Array<RouteRecordRaw> = [
             path: "activity",
             name: "profile-activity",
             component: () =>
-              import("@/views/crafted/pages/profile/Activity.vue"),
+              import("@/views/administracion/perfil/Activity.vue"),
             meta: {
               pageTitle: "Activity",
             },
@@ -233,6 +226,50 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
 
+      /* Pagina de reservar (Hoteles) */
+      {
+        path: "/comercializacion/reservar",
+        name: "comercializacion-reservar",
+        component: () =>
+          import("@/views/comercializacion/hoteles/reservar.vue"),
+        meta: {
+          pageTitle: "Reservar",
+          breadcrumbs: ["Comercialización", "Hoteles", "Reservar"],
+        },
+      },
+      {
+        path: "/configuracion/hoteles/planes",
+        name: "configuracion-planes",
+        component: () =>
+          import("@/views/comercializacion/hoteles/planesA.vue"),
+        meta: {
+          pageTitle: "Planes Alimenticios",
+          breadcrumbs: ["Comercialización", "Hoteles", "Planes Alimenticios"],
+        },
+      },
+      {
+        path: "/configuracion/hoteles/edades",
+        name: "configuracion-edades",
+        component: () =>
+          import("@/views/comercializacion/hoteles/edades.vue"),
+        meta: {
+          pageTitle: "Edades",
+          breadcrumbs: ["Comercialización", "Hoteles", "Edades"],
+        },
+      },
+
+
+      {
+        path: "/administracion/nomencladores/hoteles/tiposcama",
+        name: "administracion-tiposcama",
+        component: () =>
+          import("@/views/administracion/nomencladores/hoteles/tiposcama.vue"),
+        meta: {
+          pageTitle: "Tipos de camas",
+          breadcrumbs: ["administracion", "Hoteles", "Tipos de camas"],
+        },
+      },
+
       /*fin del codigo */
       {
         path: "/apps/sales/orderlisting",
@@ -311,9 +348,9 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/apps/calendar",
-        name: "apps-calendar",
-        component: () => import("@/views/apps/Calendar.vue"),
+        path: "/comercializacion/calendar",
+        name: "comercializacion-calendar",
+        component: () => import("@/views/comercializacion/Calendar.vue"),
         meta: {
           pageTitle: "Calendar",
           breadcrumbs: ["Apps"],

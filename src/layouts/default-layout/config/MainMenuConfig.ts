@@ -39,32 +39,16 @@ export default function useDynamicMenu() {
               bootstrapIcon: "bi-archive",
               sub: [
                 {
-                  heading: "provincia",
-                  route: "/administracion/nomencladores/provincia",
+                  heading: "tipos de camas",
+                  route: "/administracion/nomencladores/hoteles/tiposcama",
                 },
                 {
-                  heading: "localidad",
-                  route: "/administracion/nomencladores/localidad",
+                  heading: "clasificación de habitaciones",
+                  route: "/administracion/nomencladores/hoteles/clasificacionhabitaciones",
                 },
                 {
-                  heading: "categoría",
-                  route: "/administracion/nomencladores/categoria",
-                },
-                {
-                  heading: "municipio",
-                  route: "/administracion/nomencladores/municipio",
-                },
-                {
-                  heading: "tipo de transporte",
-                  route: "/administracion/nomencladores/tipotransporte",
-                },
-                {
-                  heading: "marca",
-                  route: "/administracion/nomencladores/marca",
-                },
-                {
-                  heading: "modelo",
-                  route: "/administracion/nomencladores/modelo",
+                  heading: "cadena hotelera",
+                  route: "/administracion/nomencladores/hoteles/cadenahotelera",
                 },
               ],
             },
@@ -77,7 +61,7 @@ export default function useDynamicMenu() {
           pages: [
             {
               heading: "reservar",
-              route: "/comercializacion/reservas",
+              route: "/comercializacion/reservar",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
@@ -89,7 +73,7 @@ export default function useDynamicMenu() {
             },
             {
               heading: "hoteles",
-              route: "/comercializacion/contratos",
+              route: "/comercializacion/hoteles",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
@@ -120,13 +104,13 @@ export default function useDynamicMenu() {
           pages: [
             {
               heading: "edades",
-              route: "/pages/ecomerce",
+              route: "/configuracion/hoteles/edades",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "planes alimenticios",
-              route: "/pages/files",
+              route: "/configuracion/hoteles/planes",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
@@ -351,12 +335,6 @@ export default function useDynamicMenu() {
             keenthemesIcon: "element-11",
             bootstrapIcon: "bi-app-indicator",
           },
-          // {
-          //   heading: "layoutBuilder",
-          //   route: "/builder",
-          //   keenthemesIcon: "switch",
-          //   bootstrapIcon: "bi-layers",
-          // },
         ],
       },
 
@@ -431,47 +409,35 @@ export default function useDynamicMenu() {
             keenthemesIcon: "fingerprint-scanning",
             bootstrapIcon: "bi-sticky",
           },
-          // {
-          //   sectionTitle: "reservas",
-          //   route: "/reservas",
-          //   keenthemesIcon: "fingerprint-scanning",
-          //   bootstrapIcon: "bi-sticky",
-          // },
-          // {
-          //   sectionTitle: "ofertas",
-          //   route: "/ofertas",
-          //   keenthemesIcon: "design",
-          //   bootstrapIcon: "bi-shield-check",
-          // },
           {
             sectionTitle: "perfil",
-            route: "/profile",
+            route: "/administracion/profile",
             keenthemesIcon: "design",
             bootstrapIcon: "bi-shield-check",
             sub: [
               {
                 heading: "profileOverview",
-                route: "/crafted/pages/profile/overview",
+                route: "/administracion/profile/overview",
               },
               {
                 heading: "projects",
-                route: "/crafted/pages/profile/projects",
+                route: "/administracion/profile/projects",
               },
               {
                 heading: "campaigns",
-                route: "/crafted/pages/profile/campaigns",
+                route: "/administracion/profile/campaigns",
               },
               {
                 heading: "documents",
-                route: "/crafted/pages/profile/documents",
+                route: "/administracion/profile/documents",
               },
               {
                 heading: "connections",
-                route: "/crafted/pages/profile/connections",
+                route: "/administracion/profile/connections",
               },
               {
                 heading: "activity",
-                route: "/crafted/pages/profile/activity",
+                route: "/administracion/profile/activity",
               },
             ],
           },
@@ -524,7 +490,7 @@ export default function useDynamicMenu() {
           },
           {
             heading: "calendarApp",
-            route: "/apps/calendar",
+            route: "/comercializacion/calendar",
             keenthemesIcon: "calendar-8",
             bootstrapIcon: "bi-calendar3-event",
           },
