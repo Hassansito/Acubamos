@@ -47,7 +47,7 @@
             data-bs-target="#kt_modal_add_tipocama"
           >
             <KTIcon icon-name="plus" icon-class="fs-2" />
-            Añadir tipo de cama
+            Añadir Tipocama
           </button>
           <!--end::Add Tipocama-->
         </div>
@@ -131,7 +131,7 @@
             <!--begin::Menu item-->
             <div class="menu-item px-3">
               <router-link
-                to="/apps/tipocama/tipocama-details"
+                to="/apps/planes/plan-details"
                 class="menu-link px-3"
                 @click="editTipocama(tipocama)"
                 data-bs-toggle="modal"
@@ -165,8 +165,8 @@ import { defineComponent, onMounted, ref } from "vue";
 import Datatable from "@/components/kt-datatable/KTDataTable.vue";
 import type { Sort } from "@/components/kt-datatable//table-partials/models";
 import ExportCustomerModal from "@/components/modals/forms/otros/ExportCustomerModal.vue";
-import AddTipoCamaModal from "@/components/modals/forms/AddTipoCamaModal.vue";
-import EditTipoCamaModal from "@/components/modals/forms/EditTipoCamaModal.vue";
+import AddTipocamaModal from "@/components/modals/forms/AddTipocamaModal.vue";
+import EditTipocamaModal from "@/components/modals/forms/EditTipocamaModal.vue";
 import type { ITipoCama } from "@/core/data/tipoCama";
 import tiposCama from "@/core/data/tipoCama";
 import arraySort from "array-sort";
@@ -177,8 +177,8 @@ export default defineComponent({
   components: {
     Datatable,
     ExportCustomerModal,
-    AddTipoCamaModal,
-    EditTipoCamaModal,
+    AddTipocamaModal,
+    EditTipocamaModal,
   },
   setup() {
     const tableHeader = ref([
@@ -262,12 +262,12 @@ export default defineComponent({
       selectedIds.value = selectedItems;
     };
 
-    const editTipocama = (plan: {
+    const editTipocama = (tipocama: {
       id: number;
       name: string;
       descripcion: string;
     }) => {
-      selectedTipocama.value = plan;
+      selectedTipocama.value = tipocama;
     };
 
     return {

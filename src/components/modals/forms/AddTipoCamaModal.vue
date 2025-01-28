@@ -2,7 +2,7 @@
   <div
     class="modal fade"
     id="kt_modal_add_tipocama"
-    ref="addTipocamaModalRef"
+    ref="addPlanModalRef"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -74,7 +74,7 @@
                   <i
                     class="fas fa-exclamation-circle ms-1 fs-7"
                     data-bs-toggle="tooltip"
-                    title="tipocama address must be active"
+                    title="plan address must be active"
                   ></i>
                 </label>
                 <!--end::Label-->
@@ -142,7 +142,7 @@ export default defineComponent({
   components: {},
   setup() {
     const formRef = ref<null | HTMLFormElement>(null);
-    const addTipocamaModalRef = ref<null | HTMLElement>(null);
+    const addPlanModalRef = ref<null | HTMLElement>(null);
     const loading = ref<boolean>(false);
 
     const formData = ref({
@@ -161,7 +161,7 @@ export default defineComponent({
       descripcion: [
         {
           required: true,
-          message: "Customer Tipocama is required",
+          message: "Customer Plan is required",
           trigger: "change",
         },
       ],
@@ -189,7 +189,7 @@ export default defineComponent({
                 confirmButton: "btn btn-primary",
               },
             }).then(() => {
-              hideModal(addTipocamaModalRef.value);
+              hideModal(addPlanModalRef.value);
             });
           }, 2000);
         } else {
@@ -214,7 +214,7 @@ export default defineComponent({
       submit,
       formRef,
       loading,
-      addTipocamaModalRef,
+      addPlanModalRef,
       getAssetPath,
       countries,
     };
