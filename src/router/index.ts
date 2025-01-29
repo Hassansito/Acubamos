@@ -257,8 +257,6 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Comercialización", "Hoteles", "Edades"],
         },
       },
-
-
       {
         path: "/administracion/nomencladores/hoteles/tiposcama",
         name: "administracion-tiposcama",
@@ -267,6 +265,16 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           pageTitle: "Tipos de camas",
           breadcrumbs: ["administracion", "Hoteles", "Tipos de camas"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/hoteles/clasificacionhabitaciones",
+        name: "administracion-clasificacionhabitaciones",
+        component: () =>
+          import("@/views/administracion/nomencladores/hoteles/clasificacionhabitaciones.vue"),
+        meta: {
+          pageTitle: "Planes Alimenticios",
+          breadcrumbs: ["Administración", "Hoteles", "Clasificación de habitaciones"],
         },
       },
 
