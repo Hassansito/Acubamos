@@ -289,6 +289,24 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: "/apps/productos/addproduct",
+        name: "apps-productos-addproduct",
+        component: () => import("@/views/apps/productos/AddProduct.vue"),
+        meta: {
+          pageTitle: "Añadir Producto",
+          breadcrumbs: ["Apps", "Productos"],
+        },
+      },
+      {
+        path: "/apps/productos/productlisting",
+        name: "apps-productos-productlisting",
+        component: () => import("@/views/apps/productos/ProductList.vue"),
+        meta: {
+          pageTitle: "Lista de Productos",
+          breadcrumbs: ["Apps", "Productos"],
+        },
+      },
+      {
         path: "/apps/customers/getting-started",
         name: "apps-customers-getting-started",
         component: () => import("@/views/apps/customers/GettingStarted.vue"),
