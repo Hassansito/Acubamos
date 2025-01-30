@@ -266,7 +266,7 @@ export default function useDynamicMenu() {
               heading: "ecomerce",
               route: "/pages/ecomerce",
               keenthemesIcon: "fingerprint-scanning",
-              bootstrapIcon: "bi-sticky",
+              bootstrapIcon: "bi-sticky",            
             },
             {
               heading: "files",
@@ -496,10 +496,37 @@ export default function useDynamicMenu() {
         route: "/pages",
         pages: [
           {
-            heading: "ecomerce",
-            route: "/pages/ecomerce",
+            sectionTitle: "ecomerce",
+            route: "/ecomerce",
             keenthemesIcon: "fingerprint-scanning",
             bootstrapIcon: "bi-sticky",
+            sub: [         
+              {
+                sectionTitle: "Ventas",
+                route: "/ventas",
+                sub: [
+                  {
+                    heading: "Lista de órdenes",
+                    route: "/apps/sales/orderlisting",
+                  },             
+                ],
+              }, 
+              {
+                sectionTitle: "Productos",
+                route: "/productos",
+                sub: [
+                  {
+                    heading: "Añadir producto",
+                    route: "/apps/productos/addproduct",
+                  },  
+                  {
+                    heading: "Lista de productos",
+                    route: "/apps/productos/productlisting",
+                  },           
+                ],
+              },          
+            ],
+            
           },
           {
             heading: "files",
