@@ -14,7 +14,7 @@
             v-model="search"
             @input="searchItems()"
             class="form-control form-control-solid w-250px ps-15"
-            placeholder="Search Customers"
+            placeholder="Buscar Oferta"
           />
         </div>
         <!--end::Search-->
@@ -26,37 +26,37 @@
         <div
           v-if="selectedIds.length === 0"
           class="d-flex justify-content-end"
-          data-kt-customer-table-toolbar="base"
+          data-kt-usuario-table-toolbar="base"
         >
           <!--begin::Export-->
           <button
             type="button"
             class="btn btn-light-primary me-3"
             data-bs-toggle="modal"
-            data-bs-target="#kt_customers_export_modal"
+            data-bs-target="#kt_Ofertas_export_modal"
           >
             <KTIcon icon-name="exit-up" icon-class="fs-2" />
             Export
           </button>
           <!--end::Export-->
-          <!--begin::Add customer-->
+          <!--begin::Add usuario-->
           <button
             type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#kt_modal_add_customer"
+            data-bs-target="#kt_modal_add_oferta"
           >
             <KTIcon icon-name="plus" icon-class="fs-2" />
-            Add Customer
+            Añadir Oferta
           </button>
-          <!--end::Add customer-->
+          <!--end::Add usuario-->
         </div>
         <!--end::Toolbar-->
         <!--begin::Group actions-->
         <div
           v-else
           class="d-flex justify-content-end align-items-center"
-          data-kt-customer-table-toolbar="selected"
+          data-kt-usuario-table-toolbar="selected"
         >
           <div class="fw-bold me-5">
             <span class="me-2">{{ selectedIds.length }}</span
@@ -65,7 +65,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click="deleteFewCustomers()"
+            @click="deleteFewOfertas()"
           >
             Delete Selected
           </button>
@@ -74,19 +74,19 @@
         <!--begin::Group actions-->
         <div
           class="d-flex justify-content-end align-items-center d-none"
-          data-kt-customer-table-toolbar="selected"
+          data-kt-usuario-table-toolbar="selected"
         >
           <div class="fw-bold me-5">
             <span
               class="me-2"
-              data-kt-customer-table-select="selected_count"
+              data-kt-usuario-table-select="selected_count"
             ></span
             >Selected
           </div>
           <button
             type="button"
             class="btn btn-danger"
-            data-kt-customer-table-select="delete_selected"
+            data-kt-usuario-table-select="delete_selected"
           >
             Delete Selected
           </button>
@@ -105,26 +105,21 @@
         :checkbox-enabled="true"
         checkbox-label="id"
       >
-        <template v-slot:name="{ row: customer }">
-          {{ customer.name }}
+        <template v-slot:codigo="{ row: usuario }">
+          {{ usuario.codigo }}
         </template>
-        <template v-slot:email="{ row: customer }">
+        <template v-slot:hotel="{ row: usuario }">
           <a href="#" class="text-gray-600 text-hover-primary mb-1">
-            {{ customer.email }}
+            {{ usuario.hotel }}
           </a>
         </template>
-        <template v-slot:company="{ row: customer }">
-          {{ customer.company }}
+        <template v-slot:tipooferta="{ row: usuario }">
+          {{ usuario.tipooferta }}
         </template>
-        <template v-slot:paymentMethod="{ row: customer }">
-          <img :src="customer.payment.icon" class="w-35px me-3" alt="" />{{
-            customer.payment.ccnumber
-          }}
+        <template v-slot:date="{ row: usuario }">
+          {{ usuario.date }}
         </template>
-        <template v-slot:date="{ row: customer }">
-          {{ customer.date }}
-        </template>
-        <template v-slot:actions="{ row: customer }">
+        <template v-slot:actions="{ row: usuario }">
           <a
             href="#"
             class="btn btn-sm btn-light btn-active-light-primary"
@@ -142,16 +137,19 @@
             <!--begin::Menu item-->
             <div class="menu-item px-3">
               <router-link
-                to="/apps/customers/customer-details"
+                to="/apps/usuarios/usuario-details"
                 class="menu-link px-3"
-                >View</router-link
+                @click="editUsuario(usuario)"
+                data-bs-toggle="modal"
+                data-bs-target="#kt_modal_edit_oferta"
+                >Editar</router-link
               >
             </div>
             <!--end::Menu item-->
             <!--begin::Menu item-->
             <div class="menu-item px-3">
-              <a @click="deleteCustomer(customer.id)" class="menu-link px-3"
-                >Delete</a
+              <a @click="deleteUsuario(usuario.id)" class="menu-link px-3"
+                >Eliminar</a
               >
             </div>
             <!--end::Menu item-->
@@ -163,7 +161,8 @@
   </div>
 
   <ExportCustomerModal></ExportCustomerModal>
-  <AddCustomerModal></AddCustomerModal>
+  <AddUserModal></AddUserModal>
+  <EditUserModal :user="selectedUser"></EditUserModal>
 </template>
 
 <script lang="ts">
@@ -172,47 +171,43 @@ import { defineComponent, onMounted, ref } from "vue";
 import Datatable from "@/components/kt-datatable/KTDataTable.vue";
 import type { Sort } from "@/components/kt-datatable//table-partials/models";
 import ExportCustomerModal from "@/components/modals/forms/otros/ExportCustomerModal.vue";
-import AddCustomerModal from "@/components/modals/forms/AddCustomerModal.vue";
-import type { ICustomer } from "@/core/data/customers";
-import customers from "@/core/data/customers";
+import AddUserModal from "@/components/modals/forms/AddUserModal.vue";
+import EditUserModal from "@/components/modals/forms/EditUserModal.vue";
+import type { IOferta } from "@/core/data/ofertas";
+import ofertas from "@/core/data/ofertas";
 import arraySort from "array-sort";
 import { MenuComponent } from "@/assets/ts/components";
 
 export default defineComponent({
-  name: "customers-listing",
+  name: "ofertas-listing",
   components: {
     Datatable,
     ExportCustomerModal,
-    AddCustomerModal,
+    AddUserModal,
+    EditUserModal,
   },
   setup() {
     const tableHeader = ref([
       {
-        columnName: "Customer Name",
-        columnLabel: "name",
+        columnName: "Código",
+        columnLabel: "codigo",
         sortEnabled: true,
         columnWidth: 175,
       },
       {
-        columnName: "Email",
-        columnLabel: "email",
+        columnName: "Hotel",
+        columnLabel: "hotel",
         sortEnabled: true,
         columnWidth: 230,
       },
       {
-        columnName: "Company",
-        columnLabel: "company",
+        columnName: "Tipo de oferta",
+        columnLabel: "tipooferta",
         sortEnabled: true,
         columnWidth: 175,
       },
       {
-        columnName: "Payment Method",
-        columnLabel: "paymentMethod",
-        sortEnabled: true,
-        columnWidth: 175,
-      },
-      {
-        columnName: "Created Date",
+        columnName: "Fecha de creación",
         columnLabel: "date",
         sortEnabled: true,
         columnWidth: 225,
@@ -226,21 +221,22 @@ export default defineComponent({
     ]);
     const selectedIds = ref<Array<number>>([]);
 
-    const tableData = ref<Array<ICustomer>>(customers);
-    const initCustomers = ref<Array<ICustomer>>([]);
+    const tableData = ref<Array<IOferta>>(ofertas);
+    const initOfertas = ref<Array<IOferta>>([]);
 
     onMounted(() => {
-      initCustomers.value.splice(0, tableData.value.length, ...tableData.value);
+      initOfertas.value.splice(0, tableData.value.length, ...tableData.value);
     });
 
-    const deleteFewCustomers = () => {
+    const selectedUser = ref();
+    const deleteFewOfertas = () => {
       selectedIds.value.forEach((item) => {
-        deleteCustomer(item);
+        deleteUsuario(item);
       });
       selectedIds.value.length = 0;
     };
 
-    const deleteCustomer = (id: number) => {
+    const deleteUsuario = (id: number) => {
       for (let i = 0; i < tableData.value.length; i++) {
         if (tableData.value[i].id === id) {
           tableData.value.splice(i, 1);
@@ -250,9 +246,9 @@ export default defineComponent({
 
     const search = ref<string>("");
     const searchItems = () => {
-      tableData.value.splice(0, tableData.value.length, ...initCustomers.value);
+      tableData.value.splice(0, tableData.value.length, ...initOfertas.value);
       if (search.value !== "") {
-        let results: Array<ICustomer> = [];
+        let results: Array<IOferta> = [];
         for (let j = 0; j < tableData.value.length; j++) {
           if (searchingFunc(tableData.value[j], search.value)) {
             results.push(tableData.value[j]);
@@ -283,18 +279,23 @@ export default defineComponent({
     const onItemSelect = (selectedItems: Array<number>) => {
       selectedIds.value = selectedItems;
     };
+    const editUsuario = (user) => {
+      selectedUser.value = user; // Set the use
+    };
 
     return {
       tableData,
       tableHeader,
-      deleteCustomer,
+      deleteUsuario,
       search,
       searchItems,
       selectedIds,
-      deleteFewCustomers,
+      deleteFewOfertas,
       sort,
       onItemSelect,
       getAssetPath,
+      editUsuario,
+      selectedUser,
     };
   },
 });

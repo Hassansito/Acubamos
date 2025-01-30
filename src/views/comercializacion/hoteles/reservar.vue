@@ -14,14 +14,11 @@ export default defineComponent({
     const addCustomerModalRef = ref<null | HTMLElement>(null);
     const loading = ref<boolean>(false);
     const formData = ref({
-      name: "Sean Bean",
-      email: "sean@dellito.com",
-      description: "",
-      addressLine: "101, Collins Street",
-      addressLine2: "",
-      town: "Melbourne",
-      state: "Victoria",
-      postCode: "3000",
+      name: "",
+      email: "",
+      telefono: "",
+      fechasolicitud: "",
+      tiposervicio: "",
       country: "US",
     });
 
@@ -40,34 +37,14 @@ export default defineComponent({
           trigger: "change",
         },
       ],
-      addressLine: [
+      fechasolicitud: [
         {
           required: true,
           message: "Address 1 is required",
           trigger: "change",
         },
       ],
-      town: [
-        {
-          required: true,
-          message: "Town is required",
-          trigger: "change",
-        },
-      ],
-      state: [
-        {
-          required: true,
-          message: "State is required",
-          trigger: "change",
-        },
-      ],
-      postCode: [
-        {
-          required: true,
-          message: "Post code is required",
-          trigger: "change",
-        },
-      ],
+      
     });
 
     const submit = () => {
@@ -128,9 +105,9 @@ export default defineComponent({
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
       <!--begin::Label-->
-      <label class="required fs-6 fw-semibold mb-2">Name</label>
+      <label class="required fs-6 fw-semibold mb-2">Nombre</label>
                 <!--end::Label-->
 
                 <!--begin::Input-->
@@ -143,9 +120,9 @@ export default defineComponent({
                 </el-form-item>
                 <!--end::Input-->
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <label class="fs-6 fw-semibold mb-2">
-                  <span class="required">Email</span>
+                  <span class="required">Correo</span>
 
                   <i
                     class="fas fa-exclamation-circle ms-1 fs-7"
@@ -161,9 +138,7 @@ export default defineComponent({
                 </el-form-item>
                 <!--end::Input-->
     </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
+    <div class="col-4">
       <!--begin::Label-->
       <label class="required fs-6 fw-semibold mb-2">Teléfono</label>
                 <!--end::Label-->
@@ -178,23 +153,59 @@ export default defineComponent({
                 </el-form-item>
                 <!--end::Input-->
     </div>
-    <div class="col-6">
+    </div>
+    <div class="row">
+    <div class="col-4">
       <label class="fs-6 fw-semibold mb-2">
-                  <span class="required">Email</span>
-
-                  <i
-                    class="fas fa-exclamation-circle ms-1 fs-7"
-                    data-bs-toggle="tooltip"
-                    title="Email address must be active"
-                  ></i>
+                  <span class="required">Fecha de solicitud</span>
                 </label>
                 <!--end::Label-->
 
                 <!--begin::Input-->
                 <el-form-item prop="email">
-                  <el-input v-model="formData.email" />
+                  <!-- <el-input v-model="formData.email" /> -->
+                  <el-input type="date" id="fecha" name="fecha"/>
                 </el-form-item>
                 <!--end::Input-->
+    </div>
+    <div class="d-flex flex-column mb-7 col-4">
+                  <!--begin::Label-->
+                  <label class="fs-6 fw-semibold mb-2">
+                    <span class="required">Tipo de servicio</span>
+
+                    <i
+                      class="fas fa-exclamation-circle ms-1 fs-7"
+                      data-bs-toggle="tooltip"
+                      title="Country of origination"
+                    ></i>
+                  </label>
+                  <!--end::Label-->
+
+                  <!--begin::Input-->
+                  <el-select v-model="formData.country">
+                    <el-option value="">Select a Country...</el-option>
+                    <el-option
+                      v-for="(item, i) in countries"
+                      :key="`countries-select-option-${i}`"
+                      :value="item.code"
+                    >
+                      {{ item.name }}
+                    </el-option>
+                  </el-select>
+                  <!--end::Input-->
+    </div>
+    <div class="col-4 d-flex flex-column justify-content-center">
+      <button
+              :data-kt-indicator="loading ? 'on' : null"
+              class="btn  btn-primary"
+              type="submit"
+            >
+              <span class="indicator-label">
+                Buscar
+                
+              </span>
+             
+            </button>
     </div>
     </div>
   </div>

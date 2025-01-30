@@ -228,13 +228,43 @@ const routes: Array<RouteRecordRaw> = [
 
       /* Pagina de reservar (Hoteles) */
       {
-        path: "/comercializacion/reservar",
+        path: "/comercializacion/hoteles/reservar",
         name: "comercializacion-reservar",
         component: () =>
           import("@/views/comercializacion/hoteles/reservar.vue"),
         meta: {
           pageTitle: "Reservar",
           breadcrumbs: ["Comercialización", "Hoteles", "Reservar"],
+        },
+      },
+      {
+        path: "/comercializacion/hoteles/reservas",
+        name: "comercializacion-reservas",
+        component: () =>
+          import("@/views/comercializacion/hoteles/reservas.vue"),
+        meta: {
+          pageTitle: "Lista de reservas",
+          breadcrumbs: ["Comercialización", "Hoteles", "Reservas"],
+        },
+      },
+      {
+        path: "/comercializacion/hoteles/hoteles",
+        name: "comercializacion-hoteles",
+        component: () =>
+          import("@/views/comercializacion/hoteles/hoteles.vue"),
+        meta: {
+          pageTitle: "Lista de hoteles",
+          breadcrumbs: ["Comercialización", "Hoteles", "Lista de hoteles"],
+        },
+      },
+      {
+        path: "/comercializacion/hoteles/ofertas",
+        name: "comercializacion-ofertas",
+        component: () =>
+          import("@/views/comercializacion/hoteles/ofertas.vue"),
+        meta: {
+          pageTitle: "Lista de ofertas",
+          breadcrumbs: ["Comercialización", "Hoteles", "Lista de ofertas"],
         },
       },
       {
@@ -247,6 +277,7 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Comercialización", "Hoteles", "Planes Alimenticios"],
         },
       },
+     
       {
         path: "/configuracion/hoteles/edades",
         name: "configuracion-edades",
@@ -273,7 +304,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import("@/views/administracion/nomencladores/hoteles/clasificacionhabitaciones.vue"),
         meta: {
-          pageTitle: "Planes Alimenticios",
+          pageTitle: "Clasificación de habitaciones",
           breadcrumbs: ["Administración", "Hoteles", "Clasificación de habitaciones"],
         },
       },
@@ -297,15 +328,7 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Apps", "Customers"],
         },
       },
-      {
-        path: "/apps/customers/customers-listing",
-        name: "apps-customers-listing",
-        component: () => import("@/views/apps/customers/CustomersListing.vue"),
-        meta: {
-          pageTitle: "Customers Listing",
-          breadcrumbs: ["Apps", "Customers"],
-        },
-      },
+     
       {
         path: "/apps/customers/customer-details",
         name: "apps-customers-details",

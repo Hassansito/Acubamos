@@ -18,12 +18,6 @@ export default function useDynamicMenu() {
               keenthemesIcon: "element-11",
               bootstrapIcon: "bi-app-indicator",
             },
-            // {
-            //   heading: "layoutBuilder",
-            //   route: "/builder",
-            //   keenthemesIcon: "switch",
-            //   bootstrapIcon: "bi-layers",
-            // },
           ],
         },
 
@@ -61,25 +55,25 @@ export default function useDynamicMenu() {
           pages: [
             {
               heading: "reservar",
-              route: "/comercializacion/reservar",
+              route: "/comercializacion/hoteles/reservar",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "reservas",
-              route: "/comercializacion/reservas",
+              route: "/comercializacion/hoteles/reservas",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "hoteles",
-              route: "/comercializacion/hoteles",
+              route: "/comercializacion/hoteles/hoteles",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "ofertas",
-              route: "/comercializacion/ofertas",
+              route: "/comercializacion/hoteles/ofertas",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
@@ -91,7 +85,7 @@ export default function useDynamicMenu() {
             },
             {
               heading: "calendarApp",
-              route: "/apps/calendar",
+              route: "/comercializacion/calendar",
               keenthemesIcon: "calendar-8",
               bootstrapIcon: "bi-calendar3-event",
             },
