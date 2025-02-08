@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">
-            <KTDatatable :header="tableHeader" :data="reservas" @on-sort="sort" :checkbox-enabled="true" :items-per-page="1000000000000"
+            <KTDatatable :header="tableHeader" :data="reservas" @on-sort="sort" :checkbox-enabled="true"
                 @on-items-select="onItemSelect">
                 <template v-slot:id="{ row: data }">
                     {{ data.id }}
