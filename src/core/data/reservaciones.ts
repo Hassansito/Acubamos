@@ -83,7 +83,7 @@ const reservas : Array<IReservaciones> = [
        tipodepago: "Transfermovil",
         condicionesadicionales: "Con maleta extra"
     },
-    /*{
+    {
         id: 6,
         origen: "La Habana",
         destino: "Miami",
@@ -292,7 +292,7 @@ const reservas : Array<IReservaciones> = [
         telefono: "5556678",
        tipodepago: "Mastercard",
         condicionesadicionales: "Con servicio de almuerzo"
-    }*/
+    }
 ]
 
 export type { IReservaciones };
