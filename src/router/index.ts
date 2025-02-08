@@ -25,7 +25,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
 
-
       {
         path: "/administracion/profile",
         name: "profile",
@@ -228,7 +227,7 @@ const routes: Array<RouteRecordRaw> = [
 
       /* Pagina de reservar (Hoteles) */
       {
-        path: "/comercializacion/hoteles/reservar",
+        path: "/comercializacion/reservar",
         name: "comercializacion-reservar",
         component: () =>
           import("@/views/comercializacion/hoteles/reservar.vue"),
@@ -238,51 +237,18 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/comercializacion/hoteles/reservas",
-        name: "comercializacion-reservas",
-        component: () =>
-          import("@/views/comercializacion/hoteles/reservas.vue"),
-        meta: {
-          pageTitle: "Lista de reservas",
-          breadcrumbs: ["Comercialización", "Hoteles", "Reservas"],
-        },
-      },
-      {
-        path: "/comercializacion/hoteles/hoteles",
-        name: "comercializacion-hoteles",
-        component: () =>
-          import("@/views/comercializacion/hoteles/hoteles.vue"),
-        meta: {
-          pageTitle: "Lista de hoteles",
-          breadcrumbs: ["Comercialización", "Hoteles", "Lista de hoteles"],
-        },
-      },
-      {
-        path: "/comercializacion/hoteles/ofertas",
-        name: "comercializacion-ofertas",
-        component: () =>
-          import("@/views/comercializacion/hoteles/ofertas.vue"),
-        meta: {
-          pageTitle: "Lista de ofertas",
-          breadcrumbs: ["Comercialización", "Hoteles", "Lista de ofertas"],
-        },
-      },
-      {
         path: "/configuracion/hoteles/planes",
         name: "configuracion-planes",
-        component: () =>
-          import("@/views/comercializacion/hoteles/planesA.vue"),
+        component: () => import("@/views/comercializacion/hoteles/planesA.vue"),
         meta: {
           pageTitle: "Planes Alimenticios",
           breadcrumbs: ["Comercialización", "Hoteles", "Planes Alimenticios"],
         },
       },
-     
       {
         path: "/configuracion/hoteles/edades",
         name: "configuracion-edades",
-        component: () =>
-          import("@/views/comercializacion/hoteles/edades.vue"),
+        component: () => import("@/views/comercializacion/hoteles/edades.vue"),
         meta: {
           pageTitle: "Edades",
           breadcrumbs: ["Comercialización", "Hoteles", "Edades"],
@@ -302,14 +268,113 @@ const routes: Array<RouteRecordRaw> = [
         path: "/administracion/nomencladores/hoteles/clasificacionhabitaciones",
         name: "administracion-clasificacionhabitaciones",
         component: () =>
-          import("@/views/administracion/nomencladores/hoteles/clasificacionhabitaciones.vue"),
+          import(
+            "@/views/administracion/nomencladores/hoteles/clasificacionhabitaciones.vue"
+          ),
         meta: {
-          pageTitle: "Clasificación de habitaciones",
-          breadcrumbs: ["Administración", "Hoteles", "Clasificación de habitaciones"],
+          pageTitle: "Planes Alimenticios",
+          breadcrumbs: [
+            "Administración",
+            "Hoteles",
+            "Clasificación de habitaciones",
+          ],
         },
       },
 
       /*fin del codigo */
+
+      /*Paginas de transfer*/
+      {
+        path: "/comercializacion/reservas/addreservation",
+        name: "comercializacion-reservas-addreservation",
+        component: () =>
+          import("@/views/comercializacion/transfer/AddReservation.vue"),
+        meta: {
+          pageTitle: "Reservar",
+          breadcrumbs: ["Comercialización", "Reservas", "Crear Reservacion"],
+        },
+      },
+      {
+        path: "/comercializacion/reservas/listreservations",
+        name: "comercializacion-reservas-listreservations",
+        component: () =>
+          import("@/views/comercializacion/transfer/ListReservations.vue"),
+        meta: {
+          pageTitle: "Reservar",
+          breadcrumbs: ["Comercialización", "Reservas", "Lista de Reservas"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/origen",
+        name: "administracion-origen",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/origen.vue"),
+        meta: {
+          pageTitle: "Origen",
+          breadcrumbs: ["administracion", "Transfer", "Origen"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/origen",
+        name: "administracion-origen",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/origen.vue"),
+        meta: {
+          pageTitle: "Origen",
+          breadcrumbs: ["administracion", "Transfer", "Origen"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/destino",
+        name: "administracion-destino",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/destino.vue"),
+        meta: {
+          pageTitle: "Destino",
+          breadcrumbs: ["administracion", "Transfer", "Destino"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/tipodeviaje",
+        name: "administracion-tipodeviaje",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/tviaje.vue"),
+        meta: {
+          pageTitle: "Tipo de viaje",
+          breadcrumbs: ["administracion", "Transfer", "Tipo de viaje"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/tipodetrasnporte",
+        name: "administracion-tipodetrasnporte",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/ttrasnporte.vue"),
+        meta: {
+          pageTitle: "Tipo de trasnporte",
+          breadcrumbs: ["administracion", "Transfer", "Tipo de trasnporte"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/tipodemercado",
+        name: "administracion-tipodemercado",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/tmercado.vue"),
+        meta: {
+          pageTitle: "Tipo de mercado",
+          breadcrumbs: ["administracion", "Transfer", "Tipo de mercado"],
+        },
+      },
+      {
+        path: "/administracion/nomencladores/transfer/tipodepago",
+        name: "administracion-tipodepago",
+        component: () =>
+          import("@/views/administracion/nomencladores/transfer/tpago.vue"),
+        meta: {
+          pageTitle: "Tipo de pago",
+          breadcrumbs: ["administracion", "Transfer", "Tipo de pago"],
+        },
+      },
+      /*Fin*/
       {
         path: "/apps/sales/orderlisting",
         name: "apps-sales-order-listing",
@@ -346,7 +411,15 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Apps", "Customers"],
         },
       },
-     
+      {
+        path: "/apps/customers/customers-listing",
+        name: "apps-customers-listing",
+        component: () => import("@/views/apps/customers/CustomersListing.vue"),
+        meta: {
+          pageTitle: "Customers Listing",
+          breadcrumbs: ["Apps", "Customers"],
+        },
+      },
       {
         path: "/apps/customers/customer-details",
         name: "apps-customers-details",
