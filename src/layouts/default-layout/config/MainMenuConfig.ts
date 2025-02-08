@@ -18,6 +18,12 @@ export default function useDynamicMenu() {
               keenthemesIcon: "element-11",
               bootstrapIcon: "bi-app-indicator",
             },
+            // {
+            //   heading: "layoutBuilder",
+            //   route: "/builder",
+            //   keenthemesIcon: "switch",
+            //   bootstrapIcon: "bi-layers",
+            // },
           ],
         },
 
@@ -55,25 +61,25 @@ export default function useDynamicMenu() {
           pages: [
             {
               heading: "reservar",
-              route: "/comercializacion/hoteles/reservar",
+              route: "/comercializacion/reservar",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "reservas",
-              route: "/comercializacion/hoteles/reservas",
+              route: "/comercializacion/reservas",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "hoteles",
-              route: "/comercializacion/hoteles/hoteles",
+              route: "/comercializacion/hoteles",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
             {
               heading: "ofertas",
-              route: "/comercializacion/hoteles/ofertas",
+              route: "/comercializacion/ofertas",
               keenthemesIcon: "fingerprint-scanning",
               bootstrapIcon: "bi-sticky",
             },
@@ -85,7 +91,7 @@ export default function useDynamicMenu() {
             },
             {
               heading: "calendarApp",
-              route: "/comercializacion/calendar",
+              route: "/apps/calendar",
               keenthemesIcon: "calendar-8",
               bootstrapIcon: "bi-calendar3-event",
             },
@@ -111,7 +117,126 @@ export default function useDynamicMenu() {
           ],
         },
       ];
-    } else if (store.categoriaSeleccionada === "Excursiones") {
+
+      /*                     TRANSFER                     */
+    }else if (store.categoriaSeleccionada === "Transfer") {
+      return [
+        {
+          pages: [
+            {
+              heading: "dashboard",
+              route: "/dashboard",
+              keenthemesIcon: "element-11",
+              bootstrapIcon: "bi-app-indicator",
+            },
+          ],
+        },
+
+        /*               Administración            */
+        {
+          heading: "Adminintración",
+          route: "/adminintracion",
+          pages: [
+            {
+              sectionTitle: "nomencladores",
+              route: "/nomencladores",
+              keenthemesIcon: "element-plus",
+              bootstrapIcon: "bi-archive",
+              sub: [
+                {
+                  heading: "origen",
+                  route: "/administracion/nomencladores/transfer/origen",
+                },
+                {
+                  heading: "destino",
+                  route: "/administracion/nomencladores/transfer/destino",
+                },
+                {
+                  heading: "tipo de viaje",
+                  route: "/administracion/nomencladores/transfer/tipodeviaje",
+                },  
+                {
+                  heading: "tipo de trasnporte",
+                  route: "/administracion/nomencladores/transfer/tipodetrasnporte",
+                },  
+                {
+                  heading: "tipo de mercado",
+                  route: "/administracion/nomencladores/transfer/tipodemercado",
+                },  
+                {
+                  heading: "tipo de pago",
+                  route: "/administracion/nomencladores/transfer/tipodepago",
+                },              
+              ],
+            },                               
+          ],
+        },
+        /*               Pages            */
+        {
+          heading: "Comercializacion",
+          route: "/comercializacion",
+          pages: [
+            {
+              sectionTitle: "reservas",
+              route: "/reservas",
+              keenthemesIcon: "fingerprint-scanning",
+              bootstrapIcon: "bi-sticky",
+              sub: [
+                {
+                  heading: "Lista de reservas",
+                  route: "/comercializacion/reservas/listreservations",
+                },
+                {
+                  heading: "Crear reservas",
+                  route: "/comercializacion/reservas/addreservation",
+                },               
+              ],
+            },
+            {
+              sectionTitle: "ofertas",
+              route: "/ofertas",
+              keenthemesIcon: "design",
+              bootstrapIcon: "bi-shield-check",
+              sub: [
+                {
+                  heading: "Lista de ofertas",
+                  route: "/comercializacion/reservas/",
+                },
+                {
+                  heading: "Crear oferta",
+                  route: "/comercializacion/reservas/addoffer",
+                },               
+              ],
+            },  
+            {
+              heading: "crear ruta",
+              route: "crearruta",
+              keenthemesIcon: "fingerprint-scanning",
+              bootstrapIcon: "bi-sticky",
+            },                          
+            {
+              heading: "calendario",
+              route: "calendario",
+              keenthemesIcon: "fingerprint-scanning",
+              bootstrapIcon: "bi-sticky",
+            },                               
+            {
+              sectionTitle: "Custom",
+              route: "/custom",
+              keenthemesIcon: "setting-2",
+              bootstrapIcon: "bi bi-gear-fill",
+              sub: [
+                {
+                  heading: "Editar Banners",
+                  route: "/apps/custom/editar-banner",
+                },
+              ],
+            },
+          ],
+        },
+      ];
+
+    }else if (store.categoriaSeleccionada === "Excursiones") {
       return [
         {
           pages: [
