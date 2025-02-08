@@ -20,7 +20,6 @@
       @page-change="pageChange"
       :current-page="currentPage"
       v-model:itemsPerPage="itemsInTable"
-      :count="totalItems"
       :items-per-page-dropdown-enabled="itemsPerPageDropdownEnabled"
     />
   </div>
