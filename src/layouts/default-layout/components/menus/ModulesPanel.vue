@@ -10,11 +10,11 @@ import { useAppStore } from "@/stores/store";
   setup() {
     const store = useAppStore()
     const modulos = ref([
-    { name: "Hoteles",path:"/comercializacion/hoteles/reservar" },
-    { name: "Excursiones",path:"/comercializacion/hoteles/reservar" },
-    { name: "Casas de renta",path:"/comercializacion/hoteles/reservar" },
-    { name: "Transfer",path:"/comercializacion/hoteles/reservar" },
-    { name: "Cubana aviación",path:"/comercializacion/hoteles/reservar" },
+    { name: "Hoteles",path:"/comercializacion/reservar" },
+    { name: "Excursiones",path:"/comercializacion/reservar" },
+    { name: "Casas de renta",path:"/comercializacion/reservar" },
+    { name: "Transfer",path:"/comercializacion/reservar" },
+    { name: "Cubana aviación",path:"/comercializacion/reservar" },
     ])
 
 
