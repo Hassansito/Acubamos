@@ -7,10 +7,10 @@
             <h3 class="card-title">Tipo de transporte</h3>
             <Field as="select" name="transporte" class="form-select form-select-solid">
               <option disabled value="">Seleccione un transporte </option>
-              <option value="bus">Bus</option>
-              <option value="carro">Carro</option>
-              <option value="taxi">Taxi</option>
-              <option value="minibus">Minibus</option>
+              <option value="Bus">Bus</option>
+              <option value="Carro">Carro</option>
+              <option value="Taxi">Taxi</option>
+              <option value="Minibus">Minibus</option>
             </Field>
             <ErrorMessage name="transporte" class="text-danger" />
           </div>
@@ -20,8 +20,8 @@
             <h3 class="my-5">Tipo de mercado</h3>
             <Field as="select" name="mercado" class="form-select form-select-solid">
               <option disabled value="">Seleccione un mercado</option>
-              <option value="nacional">Nacional</option>
-              <option value="internacional">Internacional</option>
+              <option value="Nacional">Nacional</option>
+              <option value="Internacional">Internacional</option>
             </Field>
             <ErrorMessage name="mercado" class="text-danger" />
           </div>
@@ -31,9 +31,9 @@
             <h3 class="card-title">Tipo de viaje</h3>
             <Field as="select" name="viaje" class="form-select form-select-solid">
               <option disabled value="">Seleccione un tipo de viaje</option>
-              <option value="ida">Ida</option>
-              <option value="vuelta">Vuelta</option>
-              <option value="completo">Ida y vuelta</option>
+              <option value="Ida">Ida</option>
+              <option value="Vuelta">Vuelta</option>
+              <option value="Ida y vuelta">Ida y vuelta</option>
             </Field>
             <ErrorMessage name="viaje" class="text-danger" />
           </div>
@@ -43,12 +43,12 @@
             <h3 class="my-5">Metodo de pago</h3>
             <Field as="select" name="pago" class="form-select form-select-solid">
               <option disabled value="">Seleccione un metodo</option>
-              <option value="transfermovil">Transfermovil</option>
-              <option value="enzona">Enzona</option>
-              <option value="visa">Visa</option>
+              <option value="Transfermovil">Transfermovil</option>
+              <option value="Enzona">Enzona</option>
+              <option value="Visa">Visa</option>
               <option value="Mastercard">Mastercard</option>
             </Field>
-            <ErrorMessage name="mercado" class="text-danger" />
+            <ErrorMessage name="pago" class="text-danger" />
           </div>
         </div>
       </div>
