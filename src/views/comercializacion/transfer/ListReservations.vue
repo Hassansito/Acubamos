@@ -155,9 +155,6 @@
                                             class="form-control form-control-solid w-250px"
                                             aria-label="Edit condiciones adicionales" />
                                     </p>
-                                    <button type="button" class="btn btn-primary my-5" @click="toggleEditMode">
-                                        Guardar Cambios
-                                    </button>
                                 </div>
                                 <div v-else>
                                     <p>ID: {{ selectedReserva?.id }}</p>
@@ -176,8 +173,15 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary my-5 mx-4" @click="toggleEditMode">
-                                Editar
+                            <button :data-kt-indicator="loading ? 'on' : null" class="btn btn-lg btn-primary"
+                                type="submit" @click="toggleEditMode">
+                                <span v-if="!loading" class="indicator-label">
+                                    {{ isEditable ? 'Guardar cambios' : 'Actualizar' }}
+                                </span>
+                                <span v-if="loading" class="indicator-progress">
+                                    Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
                             </button>
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">
                                 Close
@@ -198,6 +202,7 @@ import arraySort from "array-sort";
 import { useReservasStore } from "@/stores/reservas";
 import { type IReservaciones } from "@/core/data/reservaciones";
 import { Modal } from "bootstrap";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 export default defineComponent({
     name: "ListReservations",
@@ -207,7 +212,7 @@ export default defineComponent({
     setup() {
         const reservasStore = useReservasStore();
         const reservas = computed(() => reservasStore.getProducts);
-
+        const loading = ref<boolean>(false);
 
         console.log("Productos en el store:", reservas.value);
 
@@ -341,6 +346,42 @@ export default defineComponent({
             row[key] = value;
         };
         const toggleEditMode = () => {
+            if (isEditable.value) {
+                loading.value = true;
+                setTimeout(() => {
+                    loading.value = false;
+                    const updateSuccess = true;
+                    if (updateSuccess) {
+                        Swal.fire({
+                            text: "Reserva actualizada exitosamente!",
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            heightAuto: false,
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            },
+                        }).then(() => {
+                            const modalElement = document.getElementById("kt_modal_1");
+                            if (modalElement) {
+                                const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
+                                modal.hide();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            text: "Hubo un error al actualizar la reserva. Por favor, inténtalo de nuevo.",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            heightAuto: false,
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            },
+                        });
+                    }
+                },);
+            }
             isEditable.value = !isEditable.value;
         };
         const updateReserva = (order) => {

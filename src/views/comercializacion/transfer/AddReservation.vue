@@ -98,7 +98,13 @@
         </div>
         <div class="card-footer my-8 d-flex justify-content-end">
           <a href="#" class="btn btn-bg-secondary">Cancelar</a>
-          <button type="submit" class="btn btn-bg-primary mx-3">Guardar</button>
+          <button type="submit" class="btn btn-bg-primary mx-3" :disabled="loading">
+            <span v-if="!loading">Guardar</span>
+            <span v-if="loading">
+              Guardando...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -106,12 +112,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { type IReservaciones } from "@/core/data/reservaciones";
 import { useReservasStore } from "@/stores/reservas";
-
+import Swal from "sweetalert2/dist/sweetalert2.js";
 export default defineComponent({
   name: "AddReservation",
   components: {
@@ -121,7 +127,7 @@ export default defineComponent({
   },
   setup() {
     const reservasStore = useReservasStore();
-
+    const loading = ref(false); 
     const schema = yup.object({
       origen: yup.string().required("El origen es requerido"),
       destino: yup.string().required("El destino es requerido"),
@@ -142,27 +148,60 @@ export default defineComponent({
 
 
     const handleSubmit = (values: any, { resetForm }: { resetForm: () => void }) => {
-      const newReserva: IReservaciones = {
-        id: reservasStore.reservas.length + 1,
-        origen: values.origen,
-        destino: values.destino,
-        fecha:values.fecha,
-        hora: values.hora,
-        pasaporte:values.pax,
-        tipodetrasnporte:values.transporte,
-        tipodemercado:values.mercado,
-        nombre:values.firstName,
-        telefono:values.phone,
-        tipodepago:values.pago,
-        ...(values.condiciones && { condicionesadicionales: values.condiciones }),
-      };
-      reservasStore.addReserva(newReserva);
-      console.log("Reserva agregado:", newReserva);
-      resetForm();
+      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+        const saveSuccess = true;
+
+        if (saveSuccess) {
+          const newReserva: IReservaciones = {
+            id: reservasStore.reservas.length + 1,
+            origen: values.origen,
+            destino: values.destino,
+            fecha: values.fecha,
+            hora: values.hora,
+            pasaporte: values.pax,
+            tipodetrasnporte: values.transporte,
+            tipodemercado: values.mercado,
+            nombre: values.firstName,
+            telefono: values.phone,
+            tipodepago: values.pago,
+            ...(values.condiciones && { condicionesadicionales: values.condiciones }),
+          };
+
+          reservasStore.addReserva(newReserva);
+          console.log("Reserva agregada:", newReserva);
+
+          Swal.fire({
+            text: "Reserva guardada exitosamente!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            heightAuto: false,
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          }).then(() => {
+            resetForm();
+          });
+        } else {
+          Swal.fire({
+            text: "Hubo un error al guardar la reserva. Por favor, inténtalo de nuevo.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            heightAuto: false,
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          });
+        }
+      },2000);
     };
     return {
       schema,
       handleSubmit,
+      loading,
     };
   },
 });
