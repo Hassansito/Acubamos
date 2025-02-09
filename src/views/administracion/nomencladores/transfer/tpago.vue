@@ -14,7 +14,7 @@
               v-model="search"
               @input="searchItems()"
               class="form-control form-control-solid w-250px ps-15"
-              placeholder="Buscar clasificación"
+              placeholder="Buscar pago"
             />
           </div>
           <!--end::Search-->
@@ -47,7 +47,7 @@
               data-bs-target="#kt_modal_add_clasificacionH"
             >
               <KTIcon icon-name="plus" icon-class="fs-2" />
-              Añadir clasificación
+              Añadir pago
             </button>
             <!--end::Add clasificacionH-->
           </div>
@@ -156,7 +156,7 @@
   
     <ExportCustomerModal></ExportCustomerModal>
     <EditClasificacionHModal :clasificacionH="selectedClasificacionH"></EditClasificacionHModal>
-    <AddClasificacionHModal></AddClasificacionHModal>
+    <AddPagoModal></AddPagoModal>
   </template>
   
   <script lang="ts">
@@ -171,14 +171,15 @@
   import clasificacionesH from "@/core/data/clasificacionH";
   import arraySort from "array-sort";
   import { MenuComponent } from "@/assets/ts/components";
+  import AddPagoModal from "@/components/modals/forms/transfer/AddPagoModal.vue";
   
   export default defineComponent({
     name: "pago-listing",
     components: {
       Datatable,
       ExportCustomerModal,
-      AddClasificacionHModal,
       EditClasificacionHModal,
+      AddPagoModal,
     },
     setup() {
       const tableHeader = ref([

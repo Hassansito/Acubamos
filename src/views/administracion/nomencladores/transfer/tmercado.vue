@@ -14,7 +14,7 @@
               v-model="search"
               @input="searchItems()"
               class="form-control form-control-solid w-250px ps-15"
-              placeholder="Buscar clasificación"
+              placeholder="Buscar mercado"
             />
           </div>
           <!--end::Search-->
@@ -47,7 +47,7 @@
               data-bs-target="#kt_modal_add_clasificacionH"
             >
               <KTIcon icon-name="plus" icon-class="fs-2" />
-              Añadir clasificación
+              Añadir mercado
             </button>
             <!--end::Add clasificacionH-->
           </div>
@@ -156,7 +156,7 @@
   
     <ExportCustomerModal></ExportCustomerModal>
     <EditClasificacionHModal :clasificacionH="selectedClasificacionH"></EditClasificacionHModal>
-    <AddClasificacionHModal></AddClasificacionHModal>
+    <AddMercadoModal></AddMercadoModal>
   </template>
   
   <script lang="ts">
@@ -165,20 +165,19 @@
   import Datatable from "@/components/kt-datatable/KTDataTable.vue";
   import type { Sort } from "@/components/kt-datatable//table-partials/models";
   import ExportCustomerModal from "@/components/modals/forms/otros/ExportCustomerModal.vue";
-  import AddClasificacionHModal from "@/components/modals/forms/AddClasificacionHModal.vue";
   import EditClasificacionHModal from "@/components/modals/forms/EditClasificacionHModal.vue";
   import type { IClasificacionH } from "@/core/data/clasificacionH";
   import clasificacionesH from "@/core/data/clasificacionH";
   import arraySort from "array-sort";
   import { MenuComponent } from "@/assets/ts/components";
-  
+  import AddMercadoModal from "@/components/modals/forms/transfer/AddMercadoModal.vue";
   export default defineComponent({
     name: "mercado-listing",
     components: {
       Datatable,
       ExportCustomerModal,
-      AddClasificacionHModal,
       EditClasificacionHModal,
+      AddMercadoModal,
     },
     setup() {
       const tableHeader = ref([

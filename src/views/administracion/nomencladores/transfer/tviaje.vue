@@ -14,7 +14,7 @@
               v-model="search"
               @input="searchItems()"
               class="form-control form-control-solid w-250px ps-15"
-              placeholder="Buscar clasificación"
+              placeholder="Buscar viaje"
             />
           </div>
           <!--end::Search-->
@@ -47,7 +47,7 @@
               data-bs-target="#kt_modal_add_clasificacionH"
             >
               <KTIcon icon-name="plus" icon-class="fs-2" />
-              Añadir clasificación
+              Añadir viaje
             </button>
             <!--end::Add clasificacionH-->
           </div>
@@ -156,7 +156,7 @@
   
     <ExportCustomerModal></ExportCustomerModal>
     <EditClasificacionHModal :clasificacionH="selectedClasificacionH"></EditClasificacionHModal>
-    <AddClasificacionHModal></AddClasificacionHModal>
+    <AddViajeModlal></AddViajeModlal>
   </template>
   
   <script lang="ts">
@@ -171,14 +171,17 @@
   import clasificacionesH from "@/core/data/clasificacionH";
   import arraySort from "array-sort";
   import { MenuComponent } from "@/assets/ts/components";
+  import AddViajeModlal from "@/components/modals/forms/transfer/AddViajeModal.vue";
+
+
   
   export default defineComponent({
     name: "viaje-listing",
     components: {
       Datatable,
       ExportCustomerModal,
-      AddClasificacionHModal,
       EditClasificacionHModal,
+      AddViajeModlal,
     },
     setup() {
       const tableHeader = ref([
