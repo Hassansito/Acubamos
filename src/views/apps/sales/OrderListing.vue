@@ -101,7 +101,7 @@
             <!--begin::Menu item-->
             <div class="menu-item px-3">
               <a href="#" class="menu-link px-3" @click="openModal(customer)">
-                View
+                Ver
               </a>
             </div>
             <div class="menu-item px-3">
@@ -160,15 +160,7 @@
                       aria-label="Edit createdDate" class="form-control form-control-solid w-250px"
                       @focus="isEditingCreatedDate = true">
                   </p>
-                  <!--<p v-if="selectedOrder!.dateadded">
-                    Formatted Date Added: {{ formatDate(selectedOrder!.dateadded) }}
-                  </p>
-                  <p v-if="selectedOrder!.createdDate">
-                    Formatted Created Date: {{ formatDate(selectedOrder!.createdDate) }}
-                  </p>-->
-                  <button type="button" class="btn btn-primary my-5" @click="toggleEditMode">
-                    Guardar Cambios
-                  </button>
+                 
                 </div>
                 <div v-else>
                   <p>ID: {{ selectedOrder?.id }}</p>
@@ -177,14 +169,22 @@
                   <p>Total: {{ formatCurrency(selectedOrder?.total ?? 0) }}</p>
                   <p>Date Added: {{ formatDate(selectedOrder?.dateadded) }}</p>
                   <p>Created Date: {{ formatDate(selectedOrder?.createdDate) }}</p>
-                  <button type="button" class="btn btn-primary my-5" @click="toggleEditMode">
-                    Editar
-                  </button>
+                  
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+              <button :data-kt-indicator="loading ? 'on' : null" class="btn btn-lg btn-primary" type="submit"
+                @click="toggleEditMode">
+                <span v-if="!loading" class="indicator-label">
+                  {{ isEditable ? 'Guardar cambios' : 'Actualizar' }}
+                </span>
+                <span v-if="loading" class="indicator-progress">
+                  Please wait...
+                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                </span>
+              </button>
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="closeModal">
                 Close
               </button>
             </div>
@@ -205,6 +205,7 @@ import type { Sort } from "@/components/kt-datatable/table-partials/models";
 import arraySort from "array-sort";
 import { MenuComponent } from "@/assets/ts/components";
 import { Modal } from "bootstrap";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 interface ISales {
   id: number;
   customer: string;
@@ -602,9 +603,47 @@ export default defineComponent({
     ) => {
       row[key] = value;
     };
-    const toggleEditMode = () => {
-      isEditable.value = !isEditable.value;
-    };
+    const loading = ref<boolean>(false);
+      const toggleEditMode = () => {
+            if (isEditable.value) {
+                loading.value = true;
+                setTimeout(() => {
+                    loading.value = false;
+                    const updateSuccess = true;
+                    if (updateSuccess) {
+                        Swal.fire({
+                            text: "Orden actualizada exitosamente!",
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            heightAuto: false,
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            },
+                        }).then(() => {
+                            const modalElement = document.getElementById("kt_modal_1");
+                            if (modalElement) {
+                                const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
+                                modal.hide();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            text: "Hubo un error al actualizar la orden. Por favor, inténtalo de nuevo.",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            heightAuto: false,
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            },
+                        });
+                    }
+                },);
+            }
+            isEditable.value = !isEditable.value;
+        };
+
     const updateOrder = (order) => {
       console.log("Order updated:", order);
     };
