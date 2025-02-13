@@ -305,6 +305,26 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: "/comercializacion/ofertas/listofertas",
+        name: "comercializacion-reservas-listofertas",
+        component: () =>
+          import("@/views/comercializacion/transfer/ListOferta.vue"),
+        meta: {
+          pageTitle: "Ofertas",
+          breadcrumbs: ["Comercialización", "Ofertas", "Lista de Ofertas"],
+        },
+      },
+      {
+        path: "/comercializacion/ofertas/addofertas",
+        name: "comercializacion-reservas-addofertas",
+        component: () =>
+          import("@/views/comercializacion/transfer/AddOferta.vue"),
+        meta: {
+          pageTitle: "Ofertas",
+          breadcrumbs: ["Comercialización", "Ofertas", "Añadir Oferta"],
+        },
+      },
+      {
         path: "/administracion/nomencladores/transfer/origen",
         name: "administracion-origen",
         component: () =>
@@ -374,6 +394,7 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["administracion", "Transfer", "Tipo de pago"],
         },
       },
+      
       /*Fin*/
       {
         path: "/apps/sales/orderlisting",
@@ -411,7 +432,7 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Apps", "Customers"],
         },
       },
-      {
+      /*{
         path: "/apps/customers/customers-listing",
         name: "apps-customers-listing",
         component: () => import("@/views/apps/customers/CustomersListing.vue"),
@@ -419,7 +440,7 @@ const routes: Array<RouteRecordRaw> = [
           pageTitle: "Customers Listing",
           breadcrumbs: ["Apps", "Customers"],
         },
-      },
+      },*/
       {
         path: "/apps/customers/customer-details",
         name: "apps-customers-details",
