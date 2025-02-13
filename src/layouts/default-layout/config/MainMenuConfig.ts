@@ -200,11 +200,11 @@ export default function useDynamicMenu() {
               sub: [
                 {
                   heading: "Lista de ofertas",
-                  route: "/comercializacion/reservas/",
+                  route: "/comercializacion/ofertas/listofertas",
                 },
                 {
                   heading: "Crear oferta",
-                  route: "/comercializacion/reservas/addoffer",
+                  route: "/comercializacion/ofertas/addofertas",
                 },               
               ],
             },  
