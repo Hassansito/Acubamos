@@ -2,100 +2,97 @@
   <Form @submit="handleSubmit" :validation-schema="schema" :initial-values="initialValues" v-slot="{ resetForm }">
     <div class="row my-6">
       <div class=" col-md-1 py-4"></div>
-      <div class="card shadow-sm col-md-9 py-4 d-flex justify-content-center">
-        <div class="row py-4 mx-8">
-          <!-- Producto -->
-          <div class="mb-4 px-4 py-4 col-5 mx-10 ">
-            <label class="fs-5 fw-semibold form-label mb-5">Producto:</label>
-            <Field name="producto" v-slot="{ field, errors }">
+      <div class=" col-md-9 py-4 my-5">
+        <div class="card shadow-sm">
+          <div class="row d-flex justify-content-center">
+            <!-- Producto -->
+            <div class="mb-4 px-4 py-4 col-5 mx-6">
+              <label class="fs-5 fw-semibold form-label mb-5">Producto:</label>
+              <Field name="producto" v-slot="{ field, errors }">
+                <el-form-item :error="errors[0]">
+                  <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
+                    aria-label="Producto" />
+                </el-form-item>
+              </Field>
+            </div>
+
+            <!-- Idioma -->
+            <div class="mb-4 px-4 py-4 col-5 mx-6">
+              <label class="fs-5 fw-semibold form-label mb-5">Idioma:</label>
+              <Field name="idioma" v-slot="{ field, errors }">
+                <el-form-item :error="errors[0]">
+                  <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
+                    aria-label="Idioma" />
+                </el-form-item>
+              </Field>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <!-- Nombre -->
+            <div class="mb-4 px-4 py-4 col-5 mx-6">
+              <label class="fs-5 fw-semibold form-label mb-5">Nombre:</label>
+              <Field name="nombre" v-slot="{ field, errors }">
+                <el-form-item :error="errors[0]">
+                  <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
+                    aria-label="Nombre" />
+                </el-form-item>
+              </Field>
+
+            </div>
+
+            <!-- Periodo de Venta -->
+            <div class="mb-4 px-4 py-4 col-5 mx-6">
+              <label class="fs-5 fw-semibold form-label mb-5 ">Periodo de Venta:</label>
+              <Field name="periodo" v-slot="{ field, errors }">
+                <el-form-item :error="errors[0]">
+                  <el-date-picker v-model="field.value" @update:modelValue="field.onChange" format="DD/MM/YYYY"
+                    type="daterange" range-separator="-" start-placeholder="Fecha inicio" end-placeholder="Fecha fin"
+                    class="form-control-solid w-450px" />
+                </el-form-item>
+              </Field>
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="mb-4 px-4 py-4 col-12 mx-6">
+            <div class="text-start mb-3">
+              <label class="fs-5 fw-semibold form-label mx-6">Descripción:</label>
+            </div>
+            <Field name="descripcion" v-slot="{ field, errors }">
               <el-form-item :error="errors[0]">
-                <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
-                  aria-label="Producto" />
-              </el-form-item>
-            </Field>
-
-          </div>
-
-          <!-- Idioma -->
-          <div class="mb-4  py-4 col-5 mx-10">
-            <label class="fs-5 fw-semibold form-label mb-5">Idioma:</label>
-            <Field name="idioma" v-slot="{ field, errors }">
-              <el-form-item :error="errors[0]">
-                <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
-                  aria-label="Idioma" />
-              </el-form-item>
-            </Field>
-
-          </div>
-
-          <!-- Nombre -->
-          <div class="mb-4 px-4 py-4 col-4 mx-10">
-            <label class="fs-5 fw-semibold form-label mb-5">Nombre:</label>
-            <Field name="nombre" v-slot="{ field, errors }">
-              <el-form-item :error="errors[0]">
-                <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
-                  aria-label="Nombre" />
-              </el-form-item>
-            </Field>
-
-          </div>
-
-          <!-- Periodo de Venta -->
-          <div class="mb-4 px-4 py-4 col-5 mx-10">
-            <label class="fs-5 fw-semibold form-label mb-5 w-300px">Periodo de Venta:</label>
-            <Field name="periodo" v-slot="{ field, errors }">
-              <el-form-item :error="errors[0]">
-                <el-date-picker v-model="field.value" @update:modelValue="field.onChange" format="DD/MM/YYYY"
-                  type="daterange" range-separator="-" start-placeholder="Fecha inicio" end-placeholder="Fecha fin"
-                  class="form-control-solid w-450px" />
-              </el-form-item>
-            </Field>
-
-          </div>
-        </div>
-
-        <!-- Descripción -->
-        <div class="fv-row mb-5 mx-auto" style="max-width: 1200px;">
-          <div class="text-start mb-3">
-            <label class="fs-5 fw-semibold form-label">Descripción:</label>
-          </div>
-
-          <Field name="descripcion" v-slot="{ field, errors }">
-            <el-form-item :error="errors[0]">
-              <div class="d-flex justify-content-center">
-                <el-input v-model="field.value" @input="field.onChange" type="textarea" :rows="3"
-                  class="form-control-solid wide-textarea" aria-label="Descripción"
-                  style="width: 100%; min-width: 700px; max-width: 1000px;" />
-              </div>
-            </el-form-item>
-          </Field>
-        </div>
-
-        <!-- Días de la oferta -->
-        <div class="fv-row mb-5 mx-10">
-          <Field name="diasVentaSemana" v-slot="{ field, errors }">
-            <el-form-item :error="errors[0]">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <label class="fs-5 fw-semibold form-label mb-0 mx-5 py-4 px-5">Días de la oferta:</label>
-                <div class="form-check form-switch me-5">
-                  <input class="form-check-input" type="checkbox" role="switch" id="selectAllDays" :checked="selectAll"
-                    @change="toggleSelectAll(field)">
-                  <label class="form-check-label" for="selectAllDays">Seleccionar todos</label>
+                <div class="col-md-11 mx-4">
+                  <el-input v-model="field.value" @input="field.onChange" type="textarea" :rows="3"
+                    class="form-control-solid wide-textarea" aria-label="Descripción" />
                 </div>
-              </div>
-              <div class="d-flex flex-wrap gap-3 ps-5">
-                <div class="form-check form-check-inline" v-for="day in diasSemana" :key="day">
-                  <input class="form-check-input" type="checkbox" :value="day" :checked="field.value.includes(day)"
-                    @change="handleCheckboxChange(field, day)" :id="`checkbox-${day}`" />
-                  <label class="form-check-label" :for="`checkbox-${day}`">
-                    {{ day }}
-                  </label>
+              </el-form-item>
+            </Field>
+          </div>
+
+          <!-- Días de la oferta -->
+          <div class="mb-4 px-4 py-4 col-11 mx-6">
+            <Field name="diasVentaSemana" v-slot="{ field, errors }">
+              <el-form-item :error="errors[0]">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <label class="fs-5 fw-semibold form-label mb-0 mx-5 py-4 px-5">Días de la oferta:</label>
+                  <div class="form-check form-switch me-5">
+                    <input class="form-check-input" type="checkbox" role="switch" id="selectAllDays"
+                      :checked="selectAll" @change="toggleSelectAll(field)">
+                    <label class="form-check-label" for="selectAllDays">Seleccionar todos</label>
+                  </div>
                 </div>
-              </div>
-            </el-form-item>
-          </Field>
+                <div class="d-flex flex-wrap gap-3 ps-5">
+                  <div class="form-check form-check-inline" v-for="day in diasSemana" :key="day">
+                    <input class="form-check-input" type="checkbox" :value="day" :checked="field.value.includes(day)"
+                      @change="handleCheckboxChange(field, day)" :id="`checkbox-${day}`" />
+                    <label class="form-check-label" :for="`checkbox-${day}`">
+                      {{ day }}
+                    </label>
+                  </div>
+                </div>
+              </el-form-item>
+            </Field>
+          </div>
         </div>
-        <!-- Botón de envío -->
         <div class="card-footer my-8  py-4 d-flex justify-content-end">
           <a href="#" class="btn btn-bg-secondary">Cancelar</a>
           <button type="submit" class="btn btn-bg-primary mx-3" :disabled="loading">
