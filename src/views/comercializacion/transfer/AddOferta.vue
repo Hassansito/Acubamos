@@ -21,8 +21,11 @@
               <label class="fs-5 fw-semibold form-label mb-5">Idioma:</label>
               <Field name="idioma" v-slot="{ field, errors }">
                 <el-form-item :error="errors[0]">
-                  <el-input v-model="field.value" @input="field.onChange" class="form-control-solid w-250px"
-                    aria-label="Idioma" />
+                  <el-select v-model="field.value" @change="field.onChange" class="form-control-solid w-250px"
+                    aria-label="Idioma">
+                    <el-option label="Español" value="Español">Español</el-option>
+                    <el-option label="Inglés" value="Inglés">Ingles</el-option>
+                  </el-select>
                 </el-form-item>
               </Field>
             </div>

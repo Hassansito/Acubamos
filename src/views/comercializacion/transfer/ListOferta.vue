@@ -1,7 +1,11 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Listado de ofertas</h3>
+            <div class="d-flex align-items-center position-relative my-1">
+                <KTIcon icon-name="magnifier" icon-class="fs-1 position-absolute ms-6" />
+                <input type="text" v-model="search" @input="searchItems()"
+                    class="form-control form-control-solid w-250px ps-15" placeholder="Buscar Oferta" />
+            </div>
             <div class="card-toolbar">
                 <div v-if="selectedIds.length === 0" class="d-flex justify-content-end"
                     data-kt-subscription-table-toolbar="base"></div>
@@ -31,7 +35,7 @@
                     {{ data.nombre }}
                 </template>
                 <template v-slot:periodo="{ row: data }">
-                    {{ formatDateRange(data.periodo )}}
+                    {{ formatDateRange(data.periodo) }}
                 </template>
                 <template v-slot:descripcion="{ row: data }">
                     {{ data.descripcion }}
@@ -83,7 +87,7 @@
                                     <div class="fv-row mb-5">
                                         <el-form-item prop="producto">
                                             <el-input v-model="selectedOferta.producto"
-                                                class=" form-control-solid w-250px" aria-label="Edit producto" />
+                                                class="form-control-solid w-250px" aria-label="Edit producto" />
                                         </el-form-item>
                                     </div>
 
@@ -110,7 +114,7 @@
                                     <div class="fv-row mb-5">
                                         <el-form-item prop="periodo">
                                             <el-date-picker v-model="selectedOferta.periodo" format="DD/MM/YYYY"
-                                                type="daterange" class=" form-control-solid w-450px"
+                                                type="daterange" class="form-control-solid w-450px"
                                                 aria-label="Edit periodo" />
                                         </el-form-item>
                                     </div>
@@ -146,9 +150,14 @@
                                     <p>Producto: {{ selectedOferta.producto }}</p>
                                     <p>Idioma: {{ selectedOferta.idioma }}</p>
                                     <p>Nombre: {{ selectedOferta.nombre }}</p>
-                                    <p>Periodo de Venta: {{ formatDateRange(selectedOferta.periodo) }}</p>
+                                    <p>
+                                        Periodo de Venta:
+                                        {{ formatDateRange(selectedOferta.periodo) }}
+                                    </p>
                                     <p>Descripcion: {{ selectedOferta.descripcion }}</p>
-                                    <p>Días de la oferta: {{ formatDiasVentaSemana(selectedOferta.diasVentaSemana) }}
+                                    <p>
+                                        Días de la oferta:
+                                        {{ formatDiasVentaSemana(selectedOferta.diasVentaSemana) }}
                                     </p>
                                 </div>
                             </div>
@@ -157,7 +166,7 @@
                             <button :data-kt-indicator="loading ? 'on' : null" class="btn btn-lg btn-primary"
                                 type="submit" @click="toggleEditMode()">
                                 <span v-if="!loading" class="indicator-label">
-                                    {{ isEditable ? 'Guardar cambios' : 'Actualizar' }}
+                                    {{ isEditable ? "Guardar cambios" : "Actualizar" }}
                                 </span>
                                 <span v-if="loading" class="indicator-progress">
                                     Procesando...
@@ -177,7 +186,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed, ref, onMounted } from "vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 import type { Sort } from "@/components/kt-datatable/table-partials/models";
 import arraySort from "array-sort";
@@ -193,9 +202,21 @@ export default defineComponent({
     setup() {
         const ofertasStore = useOfertastore();
         const ofertas = computed(() => ofertasStore.getProducts);
+        console.log("Ofertas en el store:", ofertas.value);
         const loading = ref<boolean>(false);
-        const diasSemana = ref(["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]);
-
+        const diasSemana = ref([
+            "Lunes",
+            "Martes",
+            "Miércoles",
+            "Jueves",
+            "Viernes",
+            "Sábado",
+            "Domingo",
+        ]);
+        const initCustomers = ref<Array<IOfertasT>>([]);
+        onMounted(() => {
+            initCustomers.value.splice(0, ofertas.value.length, ...ofertas.value);
+        });
         const tableHeader = ref([
             {
                 columnName: "",
@@ -320,7 +341,8 @@ export default defineComponent({
                     }).then(() => {
                         const modalElement = document.getElementById("kt_modal_1");
                         if (modalElement) {
-                            const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
+                            const modal =
+                                Modal.getInstance(modalElement) || new Modal(modalElement);
                             modal.hide();
                         }
                     });
@@ -358,7 +380,30 @@ export default defineComponent({
             });
             return `${startDate} - ${endDate}`;
         }
-
+        const search = ref<string>("");
+        const searchItems = () => {
+            ofertas.value.splice(0, ofertas.value.length, ...initCustomers.value);
+            if (search.value !== "") {
+                let results: Array<IOfertasT> = [];
+                for (let j = 0; j < ofertas.value.length; j++) {
+                    if (searchingFunc(ofertas.value[j], search.value)) {
+                        results.push(ofertas.value[j]);
+                    }
+                }
+                ofertas.value.splice(0, ofertas.value.length, ...results);
+            }
+            MenuComponent.reinitialization();
+        };
+        const searchingFunc = (obj: any, value: string): boolean => {
+            for (let key in obj) {
+                if (!Number.isInteger(obj[key]) && !(typeof obj[key] === "object")) {
+                    if (obj[key].indexOf(value) != -1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
         return {
             tableHeader,
             ofertas,
@@ -376,6 +421,8 @@ export default defineComponent({
             diasSemana,
             loading,
             formatDateRange,
+            search,
+            searchItems,
         };
     },
 });
