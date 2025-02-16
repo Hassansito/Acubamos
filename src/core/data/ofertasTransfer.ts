@@ -52,7 +52,7 @@ const ofertasT: Array<IOfertasT> = [
           descripcion: "Alquiler de camionetas para trabajo con descuentos.",
           diasVentaSemana: ["Lunes", "Miércoles", "Viernes"],
         },
-        /*{
+        {
           id: 5,
           producto: "Híbrido",
           idioma: "Español",
@@ -121,7 +121,7 @@ const ofertasT: Array<IOfertasT> = [
           periodo: [new Date("2024-11-15"), new Date("2024-12-15")],
           descripcion: "Alquiler de motocicletas para movilidad urbana.",
           diasVentaSemana: ["Lunes", "Miércoles", "Viernes"],
-        },*/ 
+        },
 ];
 
 export type { IOfertasT };
