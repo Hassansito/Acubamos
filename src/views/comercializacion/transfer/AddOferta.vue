@@ -84,10 +84,10 @@
                   </div>
                 </div>
                 <div class="d-flex flex-wrap gap-3 ps-5">
-                  <div class="form-check form-check-inline" v-for="day in diasSemana" :key="day">
+                  <div class="form-check form-check-custom" v-for="day in diasSemana" :key="day">
                     <input class="form-check-input" type="checkbox" :value="day" :checked="field.value.includes(day)"
                       @change="handleCheckboxChange(field, day)" :id="`checkbox-${day}`" />
-                    <label class="form-check-label" :for="`checkbox-${day}`">
+                    <label class="form-check-label me-3 text-white" :for="`checkbox-${day}`">
                       {{ day }}
                     </label>
                   </div>

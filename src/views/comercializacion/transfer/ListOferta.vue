@@ -95,8 +95,11 @@
                                     <label class="fs-5 fw-semibold form-label mb-5">Idioma:</label>
                                     <div class="fv-row mb-5">
                                         <el-form-item prop="idioma">
-                                            <el-input v-model="selectedOferta.idioma" class="form-control-solid w-250px"
-                                                aria-label="Edit idioma" />
+                                            <el-select v-model="selectedOferta.idioma"
+                                                class="form-control-solid w-250px" aria-label=" Edit Idioma">
+                                                <el-option label="Español" value="Español">Español</el-option>
+                                                <el-option label="Inglés" value="Inglés">Ingles</el-option>
+                                            </el-select>
                                         </el-form-item>
                                     </div>
 
@@ -132,33 +135,26 @@
                                     <label class="fs-5 fw-semibold form-label mb-5">Días de la oferta:</label>
                                     <div class="fv-row mb-5">
                                         <el-form-item prop="diasVentaSemana">
-                                            <div class="form-check form-check-inline" v-for="day in diasSemana"
+                                            <div class="form-check form-check-custom" v-for="day in diasSemana"
                                                 :key="day">
                                                 <input class="form-check-input" type="checkbox" :value="day"
                                                     v-model="selectedOferta.diasVentaSemana" :id="`checkbox-${day}`" />
-                                                <label class="form-check-label" :for="`checkbox-${day}`">
+                                                <label class="form-check-label me-3 text-white" :for="`checkbox-${day}`">
                                                     {{ day }}
                                                 </label>
                                             </div>
                                         </el-form-item>
                                     </div>
                                 </el-form>
-
                                 <div v-else>
                                     <!-- Vista de solo lectura -->
                                     <p>ID: {{ selectedOferta.id }}</p>
                                     <p>Producto: {{ selectedOferta.producto }}</p>
                                     <p>Idioma: {{ selectedOferta.idioma }}</p>
                                     <p>Nombre: {{ selectedOferta.nombre }}</p>
-                                    <p>
-                                        Periodo de Venta:
-                                        {{ formatDateRange(selectedOferta.periodo) }}
-                                    </p>
+                                    <p>Periodo de Venta: {{ formatDateRange(selectedOferta.periodo) }} </p>
                                     <p>Descripcion: {{ selectedOferta.descripcion }}</p>
-                                    <p>
-                                        Días de la oferta:
-                                        {{ formatDiasVentaSemana(selectedOferta.diasVentaSemana) }}
-                                    </p>
+                                    <p>Días de la oferta:{{ formatDiasVentaSemana(selectedOferta.diasVentaSemana) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -194,6 +190,7 @@ import { Modal } from "bootstrap";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { useOfertastore } from "@/stores/ofertas";
 import { type IOfertasT } from "@/core/data/ofertasTransfer";
+import { MenuComponent } from "@/assets/ts/components";
 export default defineComponent({
     name: "ListOfertas",
     components: {
@@ -326,8 +323,7 @@ export default defineComponent({
         const toggleEditMode = async () => {
             if (isEditable.value) {
                 loading.value = true;
-                try {
-                    // Actualizar la oferta en el store
+                try { 
                     ofertasStore.updateOferta(selectedOferta.value);
 
                     Swal.fire({

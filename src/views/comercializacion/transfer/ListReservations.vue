@@ -1,7 +1,11 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Listado de reservaciones</h3>
+            <div class="d-flex align-items-center position-relative my-1">
+                <KTIcon icon-name="magnifier" icon-class="fs-1 position-absolute ms-6" />
+                <input type="text" v-model="search" @input="searchItems()"
+                    class="form-control form-control-solid w-250px ps-15" placeholder="Buscar Reserva" />
+            </div>
             <div class="card-toolbar">
                 <div v-if="selectedIds.length === 0" class="d-flex justify-content-end"
                     data-kt-subscription-table-toolbar="base"></div>
@@ -93,82 +97,143 @@
                         <div class="modal-body">
                             <div>
                                 <div v-if="isEditable">
+                                    <el-form :model="selectedReserva" ref="formRef">
+                                        <!-- Nombre -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Nombre:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="nombre">
+                                                <el-input v-model="selectedReserva.nombre"
+                                                    class="form-control-solid w-250px"
+                                                    aria-label="Edit customer name" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Pasaporte -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Pasaporte:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="pasaporte">
+                                                <el-input v-model="selectedReserva.pasaporte"
+                                                    class="form-control-solid w-250px" aria-label="Edit pasaporte" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Teléfono -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Teléfono:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="telefono">
+                                                <el-input v-model="selectedReserva.telefono"
+                                                    class="form-control-solid w-250px" aria-label="Edit telefono" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Origen -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Origen:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="origen">
+                                                <el-input v-model="selectedReserva.origen"
+                                                    class="form-control-solid w-250px" aria-label="Edit origen" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Destino -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Destino:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="destino">
+                                                <el-input v-model="selectedReserva.destino"
+                                                    class="form-control-solid w-250px" aria-label="Edit destino" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Fecha -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Fecha:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="fecha">
+                                                <el-date-picker v-model="selectedReserva.fecha" type="date"
+                                                    class="form-control-solid w-250px" aria-label="Edit fecha" />
+                                            </el-form-item>
+                                        </div>
+
+                                        <!-- Hora -->
+                                        <p>
+                                            Hora:
+                                            <input type="time" v-model="selectedReserva.hora"
+                                                class="form-control w-250px" aria-label="Edit hora" />
+                                        </p>
+
+                                        <!-- Tipo de pago -->
+                                        <label class="fs-5 fw-semibold form-label mb-5">Tipo de pago:</label>
+                                        <div class="fv-row mb-5">
+                                            <el-form-item prop="tipodepago">
+                                                <div class="form-check form-check-custom" v-for="tarjetas in tarjetasT"
+                                                    :key="tarjetas">
+                                                    <input class="form-check-input" type="radio" :value="tarjetas"
+                                                        v-model="selectedReserva.tipodepago"
+                                                        :id="`radio-${tarjetas}`" />
+                                                    <label class="form-check-label me-3 text-white" :for="`radio-${tarjetas}`">
+                                                        {{ tarjetas }}
+                                                    </label>
+                                                </div>
+                                            </el-form-item>
+                                        </div>     
+                                    <!-- Tipo de mercado -->
+                                    <label class="fs-5 fw-semibold form-label mb-5">Tipo de mercado:</label>
+                                    <div class="fv-row mb-5">
+                                        <el-form-item prop="tipodemercado">
+                                            <div class="form-check form-check-custom" v-for="mercado in mercadoT"
+                                                :key="mercado">
+                                                <input class="form-check-input" type="radio" :value="mercado"
+                                                    v-model="selectedReserva.tipodemercado" :id="`radio-${mercado}`" />
+                                                <label class="form-check-label me-3 text-white" :for="`radio-${mercado}`">
+                                                    {{ mercado }}
+                                                </label>
+                                            </div>
+                                        </el-form-item>
+                                    </div>
+                                    <!-- Tipo de transporte -->
+                                    <label class="fs-5 fw-semibold form-label mb-5">Tipo de transporte:</label>
+                                    <div class="fv-row mb-5">
+                                        <el-form-item prop="tipodetrasnporte">
+                                            <div class="form-check form-check-custom" v-for="transporte in mediosT"
+                                                :key="transporte">
+                                                <input class="form-check-input" type="radio" :value="transporte"
+                                                    v-model="selectedReserva.tipodetrasnporte"
+                                                    :id="`radio-${transporte}`" />
+                                                <label class="form-check-label me-3 text-white" :for="`radio-${transporte}`">
+                                                    {{ transporte }}
+                                                </label>
+                                            </div>
+                                        </el-form-item>
+                                    </div>
+                                    <!-- Condiciones adicionales -->
+                                    <label class="fs-5 fw-semibold form-label mb-5">Condiciones adicionales:</label>
+                                    <div class="fv-row mb-5">
+                                        <el-form-item prop="condicionesadicionales">
+                                            <el-input v-model="selectedReserva.condicionesadicionales" type="textarea"
+                                                class="form-control-solid w-450px"
+                                                aria-label="Edit condiciones adicionales" />
+                                        </el-form-item>
+                                    </div>
+                                    </el-form>
+                                </div>
+                                <div v-else>
+                                    <!-- Vista de solo lectura -->
+                                    <p>ID: {{ selectedReserva.id }}</p>
+                                    <p>Nombre: {{ selectedReserva.nombre }}</p>
+                                    <p>Pasaporte: {{ selectedReserva.pasaporte }}</p>
+                                    <p>Teléfono: {{ selectedReserva.telefono }}</p>
+                                    <p>Origen: {{ selectedReserva.origen }}</p>
+                                    <p>Destino: {{ selectedReserva.destino }}</p>
+                                    <p>Fecha: {{ formatDate(selectedReserva.fecha) }}</p>
+                                    <p>Hora: {{ selectedReserva.hora }}</p>
+                                    <p>Tipo de pago: {{ selectedReserva.tipodepago }}</p>
+                                    <p>Tipo de mercado: {{ selectedReserva.tipodemercado }}</p>
                                     <p>
-                                        Nombre:
-                                        <input type="text" v-model="selectedReserva!.nombre"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit customer name" />
-                                    </p>
-                                    <p>
-                                        Pasaporte:
-                                        <input type="text" v-model="selectedReserva!.pasaporte"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit pasaporte" />
-                                    </p>
-                                    <p>
-                                        Teléfono:
-                                        <input type="text" v-model="selectedReserva!.telefono"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit telefono" />
-                                    </p>
-                                    <p>
-                                        Origen:
-                                        <input type="text" v-model="selectedReserva!.origen"
-                                            class="form-control form-control-solid w-250px" aria-label="Edit origen" />
-                                    </p>
-                                    <p>
-                                        Destino:
-                                        <input type="text" v-model="selectedReserva!.destino"
-                                            class="form-control form-control-solid w-250px" aria-label="Edit destino" />
-                                    </p>
-                                    <p>
-                                        Fecha:
-                                        <input type="date" v-model="selectedReserva!.fecha"
-                                            class="form-control form-control-solid w-250px" aria-label="Edit fecha" />
-                                    </p>
-                                    <p>
-                                        Hora:
-                                        <input type="time" v-model="selectedReserva!.hora"
-                                            class="form-control form-control-solid w-250px" aria-label="Edit hora" />
-                                    </p>
-                                    <p>
-                                        Tipo de pago:
-                                        <input type="text" v-model="selectedReserva!.tipodepago"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit tipo de pago" />
-                                    </p>
-                                    <p>
-                                        Tipo de mercado:
-                                        <input type="text" v-model="selectedReserva!.tipodemercado"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit tipo de mercado" />
-                                    </p>
-                                    <p>
-                                        Tipo de transporte:
-                                        <input type="text" v-model="selectedReserva!.tipodetrasnporte"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit tipo de transporte" />
+                                        Tipo de transporte: {{ selectedReserva.tipodetrasnporte }}
                                     </p>
                                     <p>
                                         Condiciones adicionales:
-                                        <input type="text" v-model="selectedReserva!.condicionesadicionales"
-                                            class="form-control form-control-solid w-250px"
-                                            aria-label="Edit condiciones adicionales" />
+                                        {{ selectedReserva.condicionesadicionales }}
                                     </p>
-                                </div>
-                                <div v-else>
-                                    <p>ID: {{ selectedReserva?.id }}</p>
-                                    <p>Nombre: {{ selectedReserva?.nombre }}</p>
-                                    <p>Pasaporte: {{ selectedReserva?.pasaporte }}</p>
-                                    <p>Teléfono: {{ selectedReserva?.telefono }}</p>
-                                    <p>Origen: {{ selectedReserva?.origen }}</p>
-                                    <p>Destino: {{ selectedReserva?.destino }}</p>
-                                    <p>Fecha: {{ formatDate(selectedReserva?.fecha) }}</p>
-                                    <p>Hora: {{ selectedReserva?.hora }}</p>
-                                    <p>Tipo de pago: {{ selectedReserva?.tipodepago }}</p>
-                                    <p>Tipo de mercado: {{ selectedReserva?.tipodemercado }}</p>
-                                    <p>Tipo de transporte: {{ selectedReserva?.tipodetrasnporte }}</p>
-                                    <p>Condiciones adicionales: {{ selectedReserva?.condicionesadicionales }}</p>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +241,7 @@
                             <button :data-kt-indicator="loading ? 'on' : null" class="btn btn-lg btn-primary"
                                 type="submit" @click="toggleEditMode">
                                 <span v-if="!loading" class="indicator-label">
-                                    {{ isEditable ? 'Guardar cambios' : 'Actualizar' }}
+                                    {{ isEditable ? "Guardar cambios" : "Actualizar" }}
                                 </span>
                                 <span v-if="loading" class="indicator-progress">
                                     Please wait...
@@ -194,8 +259,9 @@
         </div>
     </div>
 </template>
+
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed, ref, onMounted } from "vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 import type { Sort } from "@/components/kt-datatable/table-partials/models";
 import arraySort from "array-sort";
@@ -203,7 +269,7 @@ import { useReservasStore } from "@/stores/reservas";
 import { type IReservaciones } from "@/core/data/reservaciones";
 import { Modal } from "bootstrap";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
+import { MenuComponent } from "@/assets/ts/components";
 export default defineComponent({
     name: "ListReservations",
     components: {
@@ -213,21 +279,26 @@ export default defineComponent({
         const reservasStore = useReservasStore();
         const reservas = computed(() => reservasStore.getProducts);
         const loading = ref<boolean>(false);
-
+        const initCustomers = ref<Array<IReservaciones>>([]);
+        const mediosT = ref(["Bus", "Carro", "Taxi", "Minibus"]);
+        const tarjetasT = ref(["Transfermovil", "Enzona", "Visa", "Mastercard"]);
+        const mercadoT = ref(["Nacional", "Internacional"]);
         console.log("Productos en el store:", reservas.value);
-
+        onMounted(() => {
+            initCustomers.value.splice(0, reservas.value.length, ...reservas.value);
+        });
         const tableHeader = ref([
             {
                 columnName: "",
                 columnLabel: "id",
                 sortEnabled: true,
-                columnWidth: 80,
+                columnWidth: 20,
             },
             {
                 columnName: "Nombre",
                 columnLabel: "nombre",
                 sortEnabled: true,
-                columnWidth: 180,
+                columnWidth: 100,
             },
             {
                 columnName: "Pasaporte",
@@ -257,13 +328,13 @@ export default defineComponent({
                 columnName: "Fecha",
                 columnLabel: "fecha",
                 sortEnabled: true,
-                columnWidth: 100,
+                columnWidth: 50,
             },
             {
                 columnName: "Hora",
                 columnLabel: "hora",
                 sortEnabled: true,
-                columnWidth: 100,
+                columnWidth: 50,
             },
             {
                 columnName: "Pago",
@@ -281,7 +352,7 @@ export default defineComponent({
                 columnName: "Transporte",
                 columnLabel: "tipodetrasnporte",
                 sortEnabled: true,
-                columnWidth: 100,
+                columnWidth: 50,
             },
             {
                 columnName: "Condiciones adicionales",
@@ -320,7 +391,20 @@ export default defineComponent({
             selectedIds.value = selectedItems;
         };
 
-        const selectedReserva = ref<IReservaciones | null>(null);
+        const selectedReserva = ref<IReservaciones>({
+            id: 0,
+            origen: "",
+            destino: "",
+            fecha: "",
+            hora: "",
+            pasaporte: "",
+            tipodetrasnporte: "",
+            tipodemercado: "",
+            nombre: "",
+            telefono: "",
+            tipodepago: "",
+            condicionesadicionales: "",
+        });
         const openModal = (order: IReservaciones) => {
             selectedReserva.value = order;
             const modalElement = document.getElementById("kt_modal_1");
@@ -338,65 +422,79 @@ export default defineComponent({
             }
         };
         const isEditable = ref(false);
-        const editCell = <K extends keyof IReservaciones>(
-            row: IReservaciones,
-            key: K,
-            value: IReservaciones[K],
-        ) => {
-            row[key] = value;
-        };
-        const toggleEditMode = () => {
+
+        const toggleEditMode = async () => {
             if (isEditable.value) {
                 loading.value = true;
-                setTimeout(() => {
+                try {
+                    reservasStore.updateReserva(selectedReserva.value);
+
+                    Swal.fire({
+                        text: "¡Oferta actualizada exitosamente!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok",
+                        customClass: {
+                            confirmButton: "btn btn-primary",
+                        },
+                    }).then(() => {
+                        const modalElement = document.getElementById("kt_modal_1");
+                        if (modalElement) {
+                            const modal =
+                                Modal.getInstance(modalElement) || new Modal(modalElement);
+                            modal.hide();
+                        }
+                    });
+                } catch (error) {
+                    Swal.fire({
+                        text: "Hubo un error al actualizar la oferta.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok",
+                        customClass: {
+                            confirmButton: "btn btn-primary",
+                        },
+                    });
+                } finally {
                     loading.value = false;
-                    const updateSuccess = true;
-                    if (updateSuccess) {
-                        Swal.fire({
-                            text: "Reserva actualizada exitosamente!",
-                            icon: "success",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            heightAuto: false,
-                            customClass: {
-                                confirmButton: "btn btn-primary",
-                            },
-                        }).then(() => {
-                            const modalElement = document.getElementById("kt_modal_1");
-                            if (modalElement) {
-                                const modal = Modal.getInstance(modalElement) || new Modal(modalElement);
-                                modal.hide();
-                            }
-                        });
-                    } else {
-                        Swal.fire({
-                            text: "Hubo un error al actualizar la reserva. Por favor, inténtalo de nuevo.",
-                            icon: "error",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            heightAuto: false,
-                            customClass: {
-                                confirmButton: "btn btn-primary",
-                            },
-                        });
-                    }
-                },);
+                }
             }
             isEditable.value = !isEditable.value;
         };
-        const updateReserva = (order) => {
-            console.log("Order updated:", order);
-        };
         const formatDate = (dateString) => {
-            if (!dateString) return '';
+            if (!dateString) return "";
             const date = new Date(dateString);
             if (isNaN(date.getTime())) {
-                return 'Invalid Date';
+                return "Invalid Date";
             }
             const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getUTCDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getUTCDate()).padStart(2, "0");
             return `${day}/${month}/${year}`;
+        };
+        const search = ref<string>("");
+        const searchItems = () => {
+            reservas.value.splice(0, reservas.value.length, ...initCustomers.value);
+            if (search.value !== "") {
+                let results: Array<IReservaciones> = [];
+                for (let j = 0; j < reservas.value.length; j++) {
+                    if (searchingFunc(reservas.value[j], search.value)) {
+                        results.push(reservas.value[j]);
+                    }
+                }
+                reservas.value.splice(0, reservas.value.length, ...results);
+            }
+            MenuComponent.reinitialization();
+        };
+        const searchingFunc = (obj: any, value: string): boolean => {
+            for (let key in obj) {
+                if (!Number.isInteger(obj[key]) && !(typeof obj[key] === "object")) {
+                    if (obj[key].indexOf(value) != -1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         };
         return {
             tableHeader,
@@ -409,11 +507,15 @@ export default defineComponent({
             selectedReserva,
             openModal,
             closeModal,
-            editCell,
             toggleEditMode,
-            updateReserva,
             isEditable,
             formatDate,
+            loading,
+            search,
+            searchItems,
+            mediosT,
+            tarjetasT,
+            mercadoT,
         };
     },
 });
