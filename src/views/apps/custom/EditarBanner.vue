@@ -1,5 +1,6 @@
 <template>
-  <div class="container mt-4">
+  <div class="container">
+    <h1>Carousel</h1>
     <div id="kt_carousel_2_carousel" class="carousel carousel-custom slide" data-bs-ride="carousel"
       data-bs-interval="8000">
       <!--begin::Heading-->
@@ -47,7 +48,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <label class="form-label">Testo</label>
+              <label class="form-label">Texto</label>
               <input type="text" class="form-control" v-model="tempCaption">
             </div>
           </div>
@@ -60,9 +61,14 @@
     </div>
     <div class="modal-backdrop fade show" v-if="editingSlide !== null"></div>
   </div>
+  <div class="container mt-4">
+    <h1>Promociones</h1>
+    <Banneroferta></Banneroferta>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import Banneroferta from "./Banneroferta.vue";
 interface Slide {
   id: number;
   image: string;
