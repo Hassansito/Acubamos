@@ -65,10 +65,15 @@
     <h1>Promociones</h1>
     <Banneroferta></Banneroferta>
   </div>
+  <div class="container mt-4">
+    <h1>Marcas</h1>
+    <MarcasSlide></MarcasSlide>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import Banneroferta from "./Banneroferta.vue";
+import MarcasSlide from "./MarcasSlide.vue";
 interface Slide {
   id: number;
   image: string;
@@ -77,7 +82,8 @@ interface Slide {
 export default defineComponent({
   name: "EditarBanner",
   components: {
-
+    Banneroferta,
+    MarcasSlide,
   },
   setup() {
     const slides = ref<Slide[]>([
