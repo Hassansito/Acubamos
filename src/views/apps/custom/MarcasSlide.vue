@@ -1,5 +1,5 @@
-<template>
-    <div class="brand-slider">
+<template> 
+    <div class="brand-slider bg-dark">
         <div class="slider-container">
             <swiper v-bind="swiperOptions">
                 <swiper-slide v-for="(brand, index) in brands" :key="index">
@@ -67,7 +67,6 @@ const swiperOptions = {
 <style scoped>
 .brand-slider {
     width: 100%;
-    background: #0000;
     padding: 4rem 0;
 }
 
